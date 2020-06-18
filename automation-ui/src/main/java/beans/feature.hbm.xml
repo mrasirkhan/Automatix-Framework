@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="beans">
+	<class name="Feature" table="FEATURE">
+			<id name="featureId" column="FEATURE_ID">
+				 <generator class="native"/>
+			</id>
+	        <property name="featureName"><column name="FEATURE_NAME" not-null="true" unique="true"></column></property>
+	        
+	        <set name="testcases" table="TESTCASE" inverse="true" cascade="all" fetch="select">
+	        	<key>
+	                <column name="FEATURE" not-null="true" />
+	            </key>
+	            <one-to-many class="TestCase" />
+	        </set>        
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app>
+   
+   <head>
+      <link href="/resources/css/jquery-ui.min.css" type="text/css" rel="stylesheet">
+<link href="/resources/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
+
+<link href="/resources/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="/resources/css/mycss.css" type="text/css" rel="stylesheet">
+
+
+<script type="text/javascript" src="/resources/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+   </head>
+   
+   <body>
+      <div>
+       <div ng-include src="'resources/html/header.html'"></div>
+         <label>Name:</label>
+         <input type = "text" ng-model = "yourName" placeholder = "Enter a name here">
+         <hr />
+         
+         <h1>Hello {{yourName}}!</h1>
+         <div><div ng-include src='view-manage-testcases.html'></div></div>
+      </div>
+      
+   </body>
+</html>

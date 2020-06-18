@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="beans">
+	<class name="RawResults" table="RAW_RESULTS" lazy="false">
+	
+		<id name="resultId" column="RESULT_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="scriptName" not-null="true">
+			<column name="SCRIPT_NAME"></column>
+		</property>
+		
+		<property name="status">
+			<column name="STATUS"></column>
+		</property>
+
+		<property name="testOutcome">
+			<column name="TEST_OUTCOME" length="10000"></column>
+		</property>
+
+		<property name="screenshotPath">
+			<column name="SCREEN_SHOT" length="255"></column>
+		</property>
+
+		<property name="startTime">
+			<column name="START_TIME"></column>
+		</property>
+
+		<property name="endTime">
+			<column name="END_TIME"></column>
+		</property>
+
+		<property name="totalScriptTime">
+			<column name="TOTAL_SCRIPT_TIME"></column>
+		</property>
+		
+		<many-to-one name="executionDetails" class="ExecutionDetails"
+		lazy="false"	fetch="select" column="EXECUTION_ID" not-null="true" cascade="all"/>
+		
+	</class>
+</hibernate-mapping>

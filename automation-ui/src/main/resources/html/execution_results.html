@@ -1,0 +1,21 @@
+
+<div id="execution_results" class="tab-pane fade in">
+	<div ng-show="resultsDataLoading" style="text-align: center; font-size: 20px;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>&nbsp;Loading all results...</div>
+	
+	<table id="allResultsTable" class="table table-striped">
+		<thead>
+			<tr>
+				<!-- Placeholder for Results page header here-->
+			</tr>
+		</thead>
+	</table>
+</div>
+<!-- Modal -->
+<div ng-app="myModalChartApp" class="modal fade" id="viewResultsModal"
+	tabindex="-1" role="dialog" aria-labelledby="viewResultsModalBtn"
+	aria-hidden="true">
+	<div ng-include="'/resources/html/Report_Main.html'"></div>	
+</div>
+
+<!-- /.modal-content -->
+<!-- /.modal-dialog -->

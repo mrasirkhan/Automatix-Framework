@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beanio xmlns="http://www.beanio.org/2012/03">
+  <stream name="configs" format="delimited">
+	<parser>  
+      <property name="delimiter" value="," />
+       <property name="lineContinuationCharacter" value="\n" />
+    </parser>
+	<record name="config" minOccurs="0" maxOccurs="unbounded" class="excel.read.ConfigDetails">	 
+      <field name="environment" />
+      <field name="browser" />
+      <field name="client" />
+	</record>
+  </stream>
+</beanio>

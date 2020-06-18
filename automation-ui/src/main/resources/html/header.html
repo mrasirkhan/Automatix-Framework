@@ -1,0 +1,32 @@
+
+	<div class="headerDiv">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<span class="navbar-brand" style="color: white;">Autom@tix</span>
+				</div>
+				<div ng-controller="myLinksCtrl" class="collapse navbar-collapse"
+					id="myNavbar">
+					<ul class="nav navbar-nav">
+
+						<li><a data-toggle="pill" href="#testcaseformSec"
+							class="btn navBtns" role="button"><b>Execute</b></a></li>
+						
+						<li><a data-toggle="pill" href="#test-master"
+							class="btn navBtns" role="button" id="viewTestcaseBtn"><b>Test Master</b></a></li>
+
+						<li><a data-toggle="pill" href="#execution_results"
+							class="btn navBtns" role="button" id="executionResultsBtn"><b>Results</b></a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a ng-href={{logoutLink}} role="button" ng-click="logoutAction()">Logout &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>

@@ -1,0 +1,15 @@
+Manual Test ID,Test Objective,Test Description,Severity,Module,Feature,Test Type,Requirement Reference No.,,,,,,,,,
+1001,Verify Glossary for all  portlet on dashboard - Account Summary,Verify relevent glossary should be displayed for the all the portlet displayed on left side of the dashboardAccount Summary,1-Critical ,Module 1,Dashboard,Sanity,1234,,,,,,,,,
+1002,Verify Glossary for all  portlet on dashboard - My ISA Allowance,Verify relevent glossary should be displayed for the all the portlet displayed on left side of the dashboardMy ISA Allowance,2-High,Module 2,Dashboard,Regression,M123,,,,,,,,,
+1003,bvbsdhfhds,Verify relevent glossary,2-High,Module 2,Equity,Regression,1234,,,,,,,TestCase,Raw_results,
+1004,abc,abc,1-Critical,Module 1,Dashboard,Sanity,1234,,,,,Execution ID,Test ID,ScriptName,status,
+,,,,,,,,,,,,1,1,VerifyDashboard1,Pass,
+,,,,,,,,,,,,1,2,VerifyDashboard2,Fail,
+,,,,,,,,,,,,1,3,VerifyDashboard2,Fail,
+,,,,,,,,,,,,1,4,VerifyDashboard3,Fail,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Pass,1
+,,,,,,,,,,,,,,,Fail,3
+,,,,,,,,,,,,,,,Skip,0
+,,,,,,,,,,,,,,,Not Run,

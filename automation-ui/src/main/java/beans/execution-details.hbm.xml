@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="beans">
+	<class name="ExecutionDetails" table="EXECUTION_DETAILS" lazy="false">
+		<id name="executionId" column="EXECUTION_ID">
+			<generator class="native" />
+		</id>
+		<set name="rawResults" table="RAW_RESULTS" inverse="true" 
+			fetch="select">
+			<key>
+				<column name="EXECUTION_ID" not-null="true" />
+			</key>
+			<one-to-many class="RawResults" />
+		</set>
+		<set name="testCase" table="EXECUTION_TEST_LIST">
+			<key>
+				<column name="EXECUTION_ID" not-null="true"></column>
+			</key>
+			<many-to-many entity-name="beans.TestCase">
+				<column name="TEST_ID" not-null="true"></column>
+			</many-to-many>
+		</set>
+		
+		<many-to-one name="environment" class="EnvironmentDetails"
+			fetch="select" column="ENVIRONMENT" not-null="true" />
+		<many-to-one name="browser" class="Browser" fetch="select"
+			column="BROWSER" not-null="true" />
+		<many-to-one name="testType" class="TestType" fetch="select"
+			column="TEST_TYPE" not-null="true" />
+		<many-to-one name="client" class="Client" fetch="select"
+			column="CLIENT" />
+			
+		<property name="loggedInUser">
+			<column name="LOG_IN_USER"></column>
+		</property>
+
+		<property name="currentDate">
+			<column name="DATE"></column>
+		</property>
+
+		<property name="shareId">
+			<column name="SHARE_ID"></column>
+		</property>
+
+		<property name="execStatus">
+			<column name="Exec_Status"></column>
+		</property>
+
+		<property name="executionXml">
+			<column name="EXECUTION_XML" length="20000"></column>
+		</property>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="beans">
+	<class name="TestType" table="TEST_TYPE">
+			<id name="testTypeId" column="TEST_TYPE_ID">
+				 <generator class="native"/>
+			</id>
+	        <property name="testTypeName"><column name="TEST_TYPE_NAME" not-null="true" unique="true"></column></property>
+	        
+	        <set name="testcases" table="TESTCASE" inverse="true" fetch="select">
+	        	<key>
+	                <column name="TEST_TYPE" not-null="true" />
+	            </key>
+	            <one-to-many class="TestCase" />	            
+	        </set>
+	       <set name="executionDetails" table="EXECUTION_DETAILS" inverse="true" cascade="all" fetch="select">
+	        	<key>
+	                <column name="TEST_TYPE" not-null="true" />
+	            </key>
+	            <one-to-many class="ExecutionDetails" />
+	            
+	        </set>
+	</class>
+</hibernate-mapping>

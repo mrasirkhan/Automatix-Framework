@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="beans">
+	<class name="Client" table="CLIENT" lazy="false">
+		<id name="clientId" column="CLIENT_ID">
+			<generator class="native" />
+		</id>
+		<property name="clientName">
+			<column name="CLIENT_NAME" not-null="true" unique="true"></column>
+		</property>
+		<set name="testcases" table="testcases_client" cascade="save-update,delete">
+			<key>
+				<column name="CLIENT_ID" not-null="true"></column>
+			</key>
+			<many-to-many entity-name="beans.TestCase">
+				<column name="TEST_ID" not-null="true"></column>
+			</many-to-many>
+		</set>
+		<set name="executionDetails" table="EXECUTION_DETAILS" fetch="select">
+			<key>
+				<column name="CLIENT" not-null="true" />
+			</key>
+			<one-to-many class="ExecutionDetails" />
+
+		</set> 
+	</class>
+</hibernate-mapping>

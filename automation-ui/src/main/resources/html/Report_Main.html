@@ -1,0 +1,175 @@
+
+<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
+<div class="modal-dialog" ng-app="reportPageApp">
+<div class="modal-content">
+	<div class="modal-body">
+		<div id="tabs">
+			<ul>
+				<li><a href="#summary"><i class="fa fa-area-chart" aria-hidden="true"></i>&nbsp;Dashboard</a></li>
+				<li><a href="#scripts"><i class="fa fa-code" aria-hidden="true"></i>&nbsp;Scripts</a></li>
+				<li><a href="#tests"><i class="fa fa-server" aria-hidden="true"></i>&nbsp;Tests</a></li>
+				<li style="float: right;">
+					<button
+							style="color: white; font-size: 20px; opacity: 1;" type="button"
+							class="close" data-dismiss="modal">&times;
+					</button>
+				</li>
+			</ul>
+			<div id="summary" class="report-content">
+				<div class="row">
+					<div class="col-sm-12">
+						<div>
+							<div class="row">
+							<div class="col-sm-1" style="width:2.2%;"></div>
+							<div class="col-sm-2" style="width:15.5%;">
+								<div class="info-box">
+									<div class="icon bg-blue">
+										<i class="fa fa-code" aria-hidden="true"></i>
+									</div>
+									<div class="content">
+										<div class="number count-to" id="scriptCount"></div>
+										<div class="text">Automated Scripts Run</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-sm-1"></div>
+							
+							<div class="col-sm-2" style="width:15.5%;">
+								<div class="info-box">
+									<div class="icon bg-blue">
+										<i class="fa fa-server" aria-hidden="true"></i>
+									</div>
+									<div class="content">
+										<div class="number count-to" id="testcaseCount">125</div>
+										<div class="text">Test Cases Executed</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-sm-1"></div>
+							
+							<div class="col-sm-2" style="width:15.5%;">
+								<div class="info-box">
+									<div class="icon bg-blue">
+										<i class="material-icons">restore</i>
+									</div>
+									<div class="content">
+										<div class="number count-to" id="totalTime"></div>
+										<div class="text">Total Time Taken</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-1"></div>
+							
+							<div class="col-sm-2" style="width:15.5%;">
+								<div class="info-box">
+									<div class="icon bg-blue">
+										<i class="material-icons">schedule</i>
+									</div>
+									<div class="content">
+										<div class="number count-to" id="perTestcaseTime"></div>
+										<div class="text">Avg. Time per Test case</div>
+									</div>								
+								</div>
+							</div>
+
+							<div class="col-sm-1"></div>
+														
+							<div class="col-sm-2" style="width:15.5%;">
+								<div class="info-box">
+									<div class="icon bg-blue">
+										<i class="material-icons">picture_in_picture</i>
+									</div>
+									<div class="content">
+										<div class="number count-to" id="moduleCount"></div>
+										<div class="text">Modules covered</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-sm-1"></div>
+														
+							<div class="col-sm-2" style="width:15.5%;">
+								<div class="info-box">
+									<div class="icon bg-blue">
+										<i class="material-icons">camera</i>
+									</div>
+									<div class="content">
+										<div class="number count-to" id="featureCount"></div>
+										<div class="text">Features covered</div>
+									</div>
+								</div>
+							</div>
+							</div>							
+							</div>
+
+					</div>
+					</div>
+				<div class="row">					
+					<div class="col-sm-6">
+						<div class="well">
+							<div id="ChartPie"
+								style="width: 100%; height: 350px; background-color: #FFFFFF;">
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<div class="well">
+							<div id="ChartModule"
+								style="width: 100%; height: 350px; background-color: #FFFFFF;">
+							</div>
+						</div>
+					</div>
+										
+				</div>
+
+				<div class="row">
+					<div class="col-sm-2">
+
+					</div>
+					
+					<div class="col-sm-8">
+						<div class="well">
+							<div id="ChartFeature" style="width: 100%; height: 400px; background-color: #FFFFFF;">
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-sm-2"></div>
+					
+				</div>
+			</div>
+
+			<div id="scripts" class="report-content">
+				<table id="reportScriptDataTable"
+					class="table table-striped">
+					<thead>
+						<tr>
+																											
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div id="tests" class="report-content">
+				<table id="executedTestCaseStatusDataTable"
+					class="table table-striped">
+					<thead>
+						<tr>
+
+							<!-- Placeholder for Results page header here-->
+
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

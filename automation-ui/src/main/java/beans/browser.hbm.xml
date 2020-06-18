@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="beans">
+	<class name="Browser" table="BROWSER">
+		<id name="browserId" column="BROWSER_ID">
+			<generator class="native" />
+		</id>
+		<property name="browserName">
+			<column name="BROWSER_NAME" not-null="true" unique="true"></column>
+		</property>
+
+		<set name="executionDetails" table="EXECUTION_DETAILS" inverse="true" cascade="all" fetch="select">
+	        	<key>
+	                <column name="BROWSER" not-null="true" />
+	            </key>
+	            <one-to-many class="ExecutionDetails" />
+	            
+	     </set>
+	</class>
+</hibernate-mapping>

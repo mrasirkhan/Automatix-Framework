@@ -1,0 +1,662 @@
+
+
+body {
+	background-color: #DCDCDC;
+	font-size: 15px;
+}
+
+body.bg-image{
+	background-image: url(/resources/img/Background_Automation_1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+ }
+    
+ .login-container{
+ 	margin:80px 0px 0px 0px;
+ }
+ 
+ .login-container #login-icon{
+ 	border-radius: 3px 0px 0px 3px;
+ 	padding: 5px 20px 6px 20px;
+ }
+ 
+ .login-container #email{
+     border-radius: 0px 4px 4px 0px;
+ }
+  
+ .login-container .panel{
+	width:90%;
+	float:right;
+}
+
+#loginBtn{
+	width:100%;
+}
+
+.well{
+	border:0px;
+	background:#FFF;
+}
+
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+	span.psw {
+		display: block;
+		float: none;
+	}
+	.cancelbtn {
+		width: 100%;
+	}
+}
+
+table {
+	font-size: 12px;
+	width: 100%;
+}
+.confirmDeleteDialog{
+	font-style: italic;
+}
+#execution_results {
+	padding: 1%;
+	padding-top: 5%;
+}
+
+#uploadLinkId {
+	margin-top: 0px;
+}
+.tab-content{
+	padding-top: 15px;
+}
+#addLinkId {
+	margin-top: 0px;
+}
+
+#Filterbutton {
+	margin-top: 0px;
+}
+
+.successMsg {
+	color: green;
+	font-style: italic;
+}
+
+.errorMsg {
+	color: red;
+	font-style: italic;
+}
+
+#fileUploadModal {
+	margin-top: 2%;
+	width:55%;
+	margin-left: 20%;
+	max-height: 80%;
+}
+#fileUploadModal .modal-dialog{
+	width:100%;
+	margin-top: initial;
+	margin-bottom: 0px;
+	margin-right: 0px;
+}
+#fileUploadModal .modal-content{
+	margin-right: 0px;
+}
+#testdescId, #testdetailstbodyId {
+	background: white;
+	border-bottom: 5px solid black;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+#testdetailstbodyId  td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	background: white;
+	padding: 2px;
+}
+
+#testdetailstbodyId th {
+	border: 1px solid black;
+	border-collapse: collapse;
+	background: #808080;
+	color: #FFFFFF;
+	padding: 5px;
+}
+
+#testdetailstbodyId {
+	border-collapse: collapse;
+}
+
+.tablecss {
+	background: #F8F8FF;
+	width: 100%;
+}
+
+#testcaseformSec {
+	padding-top: 3%;
+	height: 300px;
+	padding-bottom: 0px;
+	width: 95%;
+}
+
+#testdetailsSec {
+	padding:15px;
+}
+
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+h2 {
+	font-family: fantasy;
+}
+
+.dropdown-menu {
+	left: 1px;
+}
+
+#testcaseformSec .form-control {
+	width: 80%;
+	font-size: 12px;
+}
+
+.control-label {
+	width: 100%;
+}
+
+.label-editor {
+	width: 100%;
+	margin: 12px;
+}
+
+#testObjective {
+	width: 250px;
+	height: 114px;
+	margin-bottom: 20px;
+}
+
+#testDescription {
+	width: 300px;
+	height: 170px;
+}
+
+.dropdown-menu {
+	width: 200px;
+	overflow-y: scroll;
+	max-height: 250px;
+	margin: -1px;
+}
+
+li {
+	padding-left: 10px;
+}
+
+.caret {
+	margin-left: 39% !important;
+}
+
+.testDescDivId tr td {
+	border: 1px solid black;
+}
+
+#filteredTestCaseTable thead tr th {
+	border: 1px solid black;
+	border-top: 1px solid black;
+	font-size: 14px;
+	background-color: lightgray;
+}
+
+
+#testDescDivId .table-responsive {
+	width: 100%;
+	height: 300px;
+	overflow-y: auto;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.ui-dialog {
+	position: absolute;
+	height: auto;
+	width: 250px;
+	top: 250px;
+	left: 450px;
+}
+
+.loginJumbotron {
+	width: 23%;
+	height: auto;
+	margin-left: 75%;
+	margin-top: 6%;
+}
+
+.loginJumbotron .control-label {
+	width: auto;
+	font-size: 18px;
+}
+
+.loginJumbotron .form-inline .form-control {
+	width: 90%;
+}
+
+.loginJumbotron  #loginForm {
+	margin-left: 5%;
+}
+
+input:focus, textarea:focus {
+	background-color: #F0FFFF;
+}
+
+.errorMsg {
+	color: red;
+}
+
+#emailForm {
+	width: 100%;
+}
+
+#emailForm .form-group {
+	width: 100%;
+}
+
+#emailForm .control-label {
+	width: 20%;
+}
+
+#emailForm .emailFormControl {
+	width: 25%;
+}
+
+.navBtns {
+	background: none;
+	border: none;
+}
+
+#allTestcaseTable tbody tr td.dataTables_empty {
+	text-align: left;
+}
+
+#allTestcaseTable_wrapper {
+	padding-top: 10px;
+	margin: 0px 15px;
+}
+
+#allTestcaseTable_paginate {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#allTestcaseTable_paginate {
+	margin-top: 15px;
+}
+
+#allTestcaseTable {
+	width: auto;
+	margin: 0px auto;
+}
+
+#allTestcaseTable_paginate {
+	text-align: center;
+}
+
+#allTestcaseTable {
+	border-radius: 0px;
+	border-right-width: 0px;
+}
+
+#allTestcaseTable thead tr th {
+	background-color: #d2d2d2;
+	color: #5a5a5a;
+	border-right: 1px solid #fff;
+	font-size: 13px;
+	padding: 2px 6px;
+	border-bottom: 0;
+	text-align: center;
+	font-weight: bold;
+	height: 40px;
+	box-sizing: border-box;
+	line-height: 15px;
+}
+
+.table thead tr th {
+	vertical-align: top;
+}
+
+#allTestcaseTable tbody tr td {
+	color: #5A5A5A;
+	font-size: 12px;
+	line-height: 18px;
+	vertical-align: middle;
+	padding: 1px 6px;
+	border-bottom: 1px solid #D2D2D2;
+	text-align: left;
+	height: 46px;
+	background: #fff;
+	box-sizing: border-box;
+}
+
+.paginate_button.disabled {
+	display: none;
+}
+
+.row-eq-height {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin: 0;
+}
+
+span .paginate_button {
+	color: #d2d2d2;
+	border: 2px solid #d2d2d2;
+	padding: 5px 8px;
+	background-color: #a0a0a0;
+	margin-left: 10px;
+}
+
+span .paginate_button.current {
+	background-color: #037ea6;
+	color: #fff;
+}
+
+.paginate_button.next {
+	margin-left: 8px;
+}
+
+.search-row {
+	margin-top: 50px;
+}
+
+.dataTables_wrapper .dataTables_filter {
+	float: left;
+	text-align: left;
+}
+
+table.dataTable {
+	width: 100%;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+	float: none;
+	width: 98%;
+}
+
+#view_testcases .btn {
+	padding: 0px 5px;
+}
+
+.btn {
+	font-size: 12px;
+}
+
+<!--
+Css for login dialog box--><!--Edit dialogue box -->.modal-width {
+	width: 70% !important;
+}
+
+#fileUploadMsg {
+	color: red;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+	height: auto
+}
+
+;
+
+/* Set gray background color and 100% height */
+.sidenav {
+	background-color: #f1f1f1;
+	height: auto;
+}
+
+/* On small screens, set height to 'auto' for the grid */
+@media screen and (max-width: auto) {
+	.row.content {
+		height: auto;
+	}
+}
+
+#viewResultsModal {
+	width: 90%;
+	min-height: 650px;
+	left: 5%;
+	top: 5%;
+	bottom: 5%;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+#viewResultsModal .modal-dialog{
+	width: inherit;
+	height: 100%;
+	overflow-x: auto;
+}
+
+#viewResultsModal .modal-body{
+	width: inherit;
+	padding: 1px;
+	height: 100%;
+	overflow-x: auto;
+}
+.test-master-modal .modal{
+	top: 5%;
+	overflow-y: hidden;
+}
+.test-master-modal{
+	overflow-y: hidden;
+}
+.test-master-modal .modal-body{
+	
+	height: 380px;
+	padding: 1%;
+	overflow-y: auto;
+}
+.report-content {
+	height: 200px;
+	overflow-y: auto;
+	overflow-x: auto;
+}
+
+.container-fluid>.navbar-collapse, .container-fluid>.navbar-header,
+	.container>.navbar-collapse, .container>.navbar-header {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#reports-nav .navbar-inverse {
+	background-color: gray;
+}
+
+#reports-nav .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus,
+	.navbar-inverse .navbar-nav>.active>a:hover {
+	background-color: #999;
+}
+
+#viewResultsModal .modal-header .close {
+	margin-top: 2px;
+	font-size: 28px;
+	
+}
+
+.modal-header, .modal-header .close{
+	background: #004d99;
+	color:white;
+	opacity: 1;
+}
+.modal-header{
+	padding:8px;
+}
+#viewResultsModal .dataTables_wrapper .dataTables_filter {
+	display: none;
+}
+
+#test-master .dataTables_wrapper .dataTables_filter {
+	display: none;
+}
+
+#viewResultsModal .ui-tabs .ui-tabs-nav {
+	background: #004d99;
+}
+
+.ui-tabs .ui-tabs-panel {
+	background: #e6e6e6;
+	min-height: 480px;
+}
+
+#test-master .modal, .modal-width {
+	width: 70% !important;
+	background-color: black;
+}
+
+tfoot input {
+	width: 100%;
+	padding: 3px;
+	box-sizing: border-box;
+}
+
+i .fa .fa-window-restore{
+	color: red;
+}
+
+.info-box {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	height: 60px;
+	display: flex;
+	cursor: default;
+	background-color: #fff;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 8px;
+}
+		
+.info-box .icon {
+	text-align: center;
+	width: 60px;
+}
+.bg-red {
+	background-color: #F44336 !important;
+	color: #fff;
+}
+
+.bg-indigo {
+    background-color: #3F51B5 !important;
+    color: #fff;
+}
+
+.bg-light-blue {
+    background-color: #03A9F4 !important;
+    color: #fff;
+}
+.bg-blue {
+    background-color: #004d99 !important;
+    color: #fff;
+}
+
+
+.bg-cyan {
+    background-color: #A1887F !important;
+    color: #fff;
+}
+
+.bg-teal {
+    background-color: #009688 !important;
+    color: #fff;
+}
+
+.bg-blue-grey {
+    background-color: #607D8B !important;
+    color: #fff;
+}
+.bg-amber {
+    background-color: #FFC107 !important;
+    color: #fff;
+}
+.info-box .icon i {
+	color: #fff;
+	font-size: 30px;
+	line-height: 60px;
+}
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+}
+.info-box .content {
+	display: inline-block;
+	padding: 9px 2px;
+	width:100%;
+}
+.info-box .content .text {
+	font-family: Verdana;
+	font-size: 12px;
+    text-align: center;	
+	margin-top: 11px;
+	color: #555;
+	
+}
+.info-box .content .number {
+	font-weight: bold;
+    text-align: center;	
+	font-size: 16px;
+	margin-top: -6px;
+	padding-bottom: 4px;	
+	color: #555;
+	border-bottom:1px solid #D2D2D2;
+	
+}
+
+.scriptWidth{
+	width:20%;
+	overflow:hidden;
+	overflow-wrap: break-word;
+} 
+#fileUploadErrorMsg{
+	overflow-wrap: break-word;
+}
+
+body{
+	background-image: url(/resources/img/Background_Automation.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#execution-container{
+	margin: 0px auto;
+    width: 95%;
+    background: #eceff3;
+    border-radius: 2px;
+    height: auto;
+}
+
+.vertical-align-button{
+	height: 59px;
+    display: -webkit-box;
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+.border-bottom{
+	border-bottom:1px solid #D2D2D2;
+}
+
+.slide-up:before{
+	font-size:30px;
+	font-family:Fontawesome;
+	content: "\f13a";
+	margin:0px auto;
+	font-style: initial;
+}

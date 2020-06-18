@@ -1,0 +1,83 @@
+
+<div id="test-master" class="tab-pane fade in">
+	<br> <br> 
+	<div align="right" style="padding-bottom: 0px; padding-right: 20px;">
+		<button class="btn btn-info btn-sm" value="uploadLink" id="uploadLinkId" data-toggle="modal" data-target="#fileUploadModal"
+			ng-show="userRole=='Automation' ||userRole=='Admin'">
+			<i class="fa fa-upload" aria-hidden="true"></i>
+			</button>
+		
+		<button type="reset" class="btn btn-info btn-sm" value="addLink" id="addLinkId" data-toggle="modal" data-target="#add_testcases"
+			ng-show="userRole=='Automation'||userRole=='Admin'">
+			<i class="fa fa-plus" aria-hidden="true"></i>
+			</button>
+		
+		<button type="button" class="btn btn-info btn-sm" id="Filterbutton" onclick="filterTestCases();">
+			<i class="fa fa-filter" aria-hidden="true"></i>
+			</button>
+	</div>
+	
+	<div ng-show="loading" style="text-align: center; font-size: 20px;">
+    <i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>&nbsp;Loading all test cases. Please wait...
+	</div>
+	<table id="allTestcaseTable" class="table table-striped" style="width: 99%!important;table-layout: fixed;">
+		
+		<tfoot>
+			<tr>
+				<th class="ignoreHeader"></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th class="ignoreHeader"></th>
+				<th></th>
+				<th></th>
+				<th class="ignoreHeader"></th>
+				<th class="ignoreHeader"></th>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+<div id="fileUploadModal" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog"  style="width:70%;">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5 class="modal-title">Upload using Excel</h5>
+			</div>
+			<form method="post" name="fileUploadForm" id="fileUploadForm"
+				enctype="multipart/form-data">
+				<div class="modal-body">
+					<label class="btn btn-default btn-file"><input
+						type="file" name="file" id="testcaseFile" hidden>
+					</label>
+					<a href="/resources/template/testcase-file-template.xlsx"
+						class="btn btn-success" style="margin-left:52px;" role="button" download>
+						<i class="fa fa-download" aria-hidden="true"></i>&nbsp;
+						Download Template
+					</a>
+				</div>
+				<div class="modal-footer">
+					<span id="fileUploadSuccessMsg" class="successMsg"
+						style="display: none;"></span> <span id="fileUploadErrorMsg"
+						class="errorMsg" style="display: none;"></span>
+					<button class="btn btn-primary" id="fileUploadBtn" type="button">
+						<i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
+						Upload</button>
+					<button class="btn" data-dismiss="modal" aria-hidden="true">
+					<i class="fa fa-window-close" aria-hidden="true"></i>&nbsp;
+					Close</button>
+
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="test-master-modal"
+	ng-include="'/resources/html/edit-testcase-modal.html'"></div>
+<div class="test-master-modal"
+	ng-include="'/resources/html/add-testcases.html'"></div>

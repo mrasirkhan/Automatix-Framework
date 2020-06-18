@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="beans">
+
+	<class name="TestCase" table="TESTCASE" lazy="false">
+		<id name="id" column="TEST_ID">
+			<generator class="native" />
+		</id>
+		<property name="manualTestId" column="MANUAL_TEST_ID" unique="true" not-null="true"/>
+		<property name="testObjective" column="TEST_OBJECTIVE" length="200000"/>
+		<property name="testDescription" column="TEST_DESCRIPTION" length="200000"/>
+		<property name="requirenmentNo" column="REQUIRENMENT_REFERENCE_NO" />
+		<property name="applicableForAutomation" column="APPLICABLE_FOR_AUTOMATION" />
+		<property name="scriptName" column="SCRIPT_NAME" />
+
+		<property name="automationStatus" column="AUTOMATION_STATUS"
+			type="boolean" />
+		<many-to-one name="feature" class="Feature" fetch="select"
+			column="FEATURE"  />
+		<many-to-one name="severity" class="Severity" fetch="select"
+			column="SEVERITY" not-null="true" />
+		<many-to-one name="module" class="Module" fetch="select"
+			column="MODULE"  />
+		<many-to-one name="testType" class="TestType" fetch="select"
+			column="TEST_TYPE" />
+
+		<set name="clients" table="testcases_client">
+			<key>
+				<column name="TEST_ID" not-null="true" ></column>
+			</key>
+			<many-to-many entity-name="beans.Client">
+				<column name="CLIENT_ID" not-null="true" />
+			</many-to-many>
+		</set>
+		
+		<set name="executionDetails" table="EXECUTION_TEST_LIST">
+			<key>
+				<column name="TEST_ID" not-null="true" ></column>
+			</key>
+			<many-to-many entity-name="beans.ExecutionDetails">
+				<column name="EXECUTION_ID" not-null="true" />
+			</many-to-many>
+		</set>
+	</class>
+
+
+</hibernate-mapping>

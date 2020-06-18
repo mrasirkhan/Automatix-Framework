@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beanio xmlns="http://www.beanio.org/2012/03">
+  <stream name="testCases" format="delimited">
+	<parser>  
+      <property name="delimiter" value="," />
+       <property name="lineContinuationCharacter" value="\n" />
+    </parser>
+	<record name="testCase" minOccurs="0" maxOccurs="unbounded" class="beans.TestCase">	 
+      <field name="manualTestId"/>
+      <field name="testObjective" />
+      <field name="testDescription" />
+       <field name="severityName" />
+      <field name="moduleName" />
+      <field name="featureName" />
+	  <field name="testTypeName" />
+	  <field name="requirenmentNo" />
+	 <field name="applicableForAutomation" ignore="true" minOccurs="0" />
+	 <field name="scriptName" ignore="true" minOccurs="0" />
+	</record>
+  </stream>
+</beanio>
