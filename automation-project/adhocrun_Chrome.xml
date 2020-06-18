@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite configfailurepolicy="continue" name="Adhoc Run Test Suite" parallel="methods" thread-count="5" verbose="3">
+<test name="Test on Chrome">
+<parameter name="browser" value="Chrome"/>
+<parameter name="environment" value="Amazon India Prod Env"/>
+<parameter name="clientName" value="Web Portal"/>
+<method-selectors>
+<method-selector>
+<script language="beanshell"><![CDATA[return groups.containsKey("Web Amazon Buy") && groups.containsKey("Regression") && groups.containsKey("Web Portal");]]></script>
+</method-selector>
+</method-selectors>
+<classes>
+<class name="testscripts.webportal.WebProductBuyScripts"/>
+</classes>
+</test>
+</suite>

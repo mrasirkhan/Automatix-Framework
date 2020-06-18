@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite" verbose="3" thread-count="2" preserve-order="false" parallel="methods" configfailurepolicy="continue">
+
+	<test name="Test on Internet Explorer">
+
+		<parameter name="browser" value="Chrome" />
+		<parameter name="environment" value="Amazon India" />
+		<parameter name="clientName" value="Web Portal" />
+		<method-selectors>
+			<method-selector>
+				<script language="beanshell"><![CDATA[return groups.containsKey("Web Amazon Buy") && groups.containsKey("Regression") && groups.containsKey("Web Portal");]]></script>
+			</method-selector>
+		</method-selectors>
+		<classes>
+			<class name="testscripts.webportal.WebProductBuyScripts" />
+		</classes>
+	</test>
+</suite>
+<!-- Suite -->
