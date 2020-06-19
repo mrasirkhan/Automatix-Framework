@@ -7,3 +7,5 @@ target/
 /automationrunner/run
 Reports/
 /adhocrun.xml
+.idea/
+/MavenAutomationProject.iml
