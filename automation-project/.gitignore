@@ -1,0 +1,9 @@
+.project
+.classpath
+.settings
+.metadata
+Screenshots/
+target/
+/automationrunner/run
+Reports/
+/adhocrun.xml
