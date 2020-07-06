@@ -1,4 +1,4 @@
-set projectLocation=D:\Docs\Rahul\VitaminShopee\Automation_Project
+set projectLocation=C:\Users\vaibhav13011\git\staf\Automatix-FPT\automation-project
 cd %projectLocation%
 set classpath=%projectLocation%\bin;%projectLocation%\libs\*
 java org.testng.TestNG %projectLocation%\RunSanityScriptsOnIE.xml

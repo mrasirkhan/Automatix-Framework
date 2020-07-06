@@ -38,7 +38,9 @@ public class Setup extends BaseClass {
 	static String baseurlEnvironmentTwo = ConfigurationData.baseurlEnvironmentTwo;
 	static String baseurlEnvironmentThree = ConfigurationData.baseurlEnvironmentThree;
 	static String baseurlEnvironmentFour = ConfigurationData.baseurlEnvironmentFour;
-
+	static String baseurlEnvironmentFive = ConfigurationData.baseurlEnvironmentFive;
+	static String baseurlEnvironmentSix = ConfigurationData.baseurlEnvironmentSix;
+	
 	// Mobile Application : Configuration Data
 	static String nodeJSPath = ConfigurationData.nodeJSPath;
 	static String mobileDeviceName = ConfigurationData.mobileDeviceName;
@@ -114,6 +116,7 @@ public class Setup extends BaseClass {
 			options.addArguments("start-maximized");
 			options.addArguments("disable-infobars");
 			options.addArguments("--disable-notifications");
+			options.addArguments("--incognito");
 			HashMap<String, Object> prefs = new HashMap<String, Object>();
 			prefs.put("credentials_enable_service", false);
 			prefs.put("profile.password_manager_enabled", false);
@@ -175,6 +178,12 @@ public class Setup extends BaseClass {
 			break;
 		case "SPECSAVERS PROD ENV":
 			driver.navigate().to(baseurlEnvironmentFour);
+			break;
+		case "RANOREX TEST ENV":
+			driver.navigate().to(baseurlEnvironmentFive);
+			break;
+		case "EVOSYS TEST ENV":
+			driver.navigate().to(baseurlEnvironmentSix);
 			break;
 		case "AMAZON WEB SERVICES":
 			// driver.navigate().to(baseurlEnvironmentThree);

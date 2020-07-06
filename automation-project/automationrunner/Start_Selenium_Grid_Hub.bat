@@ -1,1 +1,1 @@
-@ECHO ONset serverJarLocation=D:\Docs\Rahul\VitaminShopee\Automation_Project\execd %serverJarLocation%java -Xms512M -Xmx512M -jar selenium-server-standalone-3.3.1.jar -role hubPAUSE
+@ECHO ONset serverJarLocation=C:\Users\vaibhav13011\git\staf\Automatix-FPT\automation-project\execd %serverJarLocation%java -Xms512M -Xmx512M -jar selenium-server-standalone-3.3.1.jar -role hubPAUSE

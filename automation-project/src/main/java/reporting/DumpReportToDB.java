@@ -40,7 +40,7 @@ public class DumpReportToDB
 
 		XSSFWorkbook book = new XSSFWorkbook();
 		NodeList testNodeList = doc.getElementsByTagName("test");
-		List<String> executionID = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM vitaminshopeeautomationdb.execution_details Where Exec_Status = 'Completed' Order By Date desc;", "EXECUTION_ID", "vitaminshopeeautomationdb", "Local");
+		List<String> executionID = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM automationdb.execution_details Where Exec_Status = 'Completed' Order By Date desc;", "EXECUTION_ID", "automationdb", "Local");
 		int latestExecutionID = Integer.parseInt(executionID.get(0));
 		System.out.println("Execution ID : " + latestExecutionID);
 
@@ -201,7 +201,7 @@ public class DumpReportToDB
 							System.out.println("Test Outcome : " + testOutcome);
 						}
 						if(!"skip".equalsIgnoreCase(methodStatus))
-							DatabaseHelper.updateQuery("Insert Into raw_results (Script_Name,Status,Test_Outcome,SCREEN_SHOT,Execution_ID,Start_Time,End_Time,Total_Script_Time) Values ('"+methodName+"', '"+methodStatus+"', '"+testOutcome+"', '"+screenshotpath+"',"+latestExecutionID+", '"+startedAt+"', '"+finishedAt+"',"+scriptTime+");", "vitaminshopeeautomationdb", "Local");
+							DatabaseHelper.updateQuery("Insert Into raw_results (Script_Name,Status,Test_Outcome,SCREEN_SHOT,Execution_ID,Start_Time,End_Time,Total_Script_Time) Values ('"+methodName+"', '"+methodStatus+"', '"+testOutcome+"', '"+screenshotpath+"',"+latestExecutionID+", '"+startedAt+"', '"+finishedAt+"',"+scriptTime+");", "automationdb", "Local");
 					}
 				}
 			}

@@ -1,4 +1,4 @@
-set projectLocation=D:\Docs\Rahul\VitaminShopee\Automation_Project
+set projectLocation=C:\Users\vaibhav13011\git\staf\Automatix-FPT\automation-project
 cd %projectLocation%
 call mvn -f adhoc_pom.xml clean -Dmaven.clean.failOnError=false install
 call mvn exec:java@RunChangeExecutionStatus

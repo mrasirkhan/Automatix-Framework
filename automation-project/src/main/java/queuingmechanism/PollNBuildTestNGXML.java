@@ -21,8 +21,8 @@ public class PollNBuildTestNGXML
 	{
 		System.out.println("Inside Poll and Build");
 		String xmlFileContent = null;
-		List<String> xmlFiles = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM vitaminshopeeautomationdb.execution_details Where Exec_Status = 'Not Started' Order By Date", "EXECUTION_XML", "vitaminshopeeautomationdb", "Local");
-		List<String> executionID = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM vitaminshopeeautomationdb.execution_details Where Exec_Status = 'Not Started' Order By Date", "EXECUTION_ID", "vitaminshopeeautomationdb", "Local");
+		List<String> xmlFiles = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM automationdb.execution_details Where Exec_Status = 'Not Started' Order By Date", "EXECUTION_XML", "automationdb", "Local");
+		List<String> executionID = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM automationdb.execution_details Where Exec_Status = 'Not Started' Order By Date", "EXECUTION_ID", "automationdb", "Local");
 		if(xmlFiles.size() != 0)
 		{
 			xmlFileContent = xmlFiles.get(0);
@@ -37,7 +37,7 @@ public class PollNBuildTestNGXML
 				output = new BufferedWriter(new FileWriter(xmlFile));
 				output.write(xmlFileContent);
 				output.close();
-				DatabaseHelper.updateQuery("Update execution_details Set Exec_Status = 'In Progress' Where EXECUTION_ID = "+Integer.parseInt(executionID.get(0))+";", "vitaminshopeeautomationdb", "Local");
+				DatabaseHelper.updateQuery("Update execution_details Set Exec_Status = 'In Progress' Where EXECUTION_ID = "+Integer.parseInt(executionID.get(0))+";", "automationdb", "Local");
 				System.out.println("Executed");
 			} 
 			catch (Exception e) 

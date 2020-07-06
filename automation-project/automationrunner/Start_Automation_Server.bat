@@ -1,5 +1,5 @@
 @ECHO OFF
-SET projectdir="D:\Docs\Rahul\VitaminShopee\Automation_Project"
+SET projectdir="C:\Users\vaibhav13011\git\staf\Automatix-FPT\automation-project"
 REM Example file
 :LOOP    
 IF NOT EXIST %projectdir%"\automationrunner\run\sanityrun.txt" GOTO SANITYEND

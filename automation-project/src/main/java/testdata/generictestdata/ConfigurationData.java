@@ -47,6 +47,12 @@ public class ConfigurationData
 		case "SPECSAVERS PROD ENV" :
 			keyValueNumber = 5;
 			break;
+		case "RANOREX TEST ENV" :
+				keyValueNumber = 6;
+				break;
+		case "EVOSYS TEST ENV" :
+				keyValueNumber = 7;
+				break;
 		case "AMAZON WEB SERVICES" :
 			keyValueNumber = 2;
 			break;
@@ -68,7 +74,9 @@ public class ConfigurationData
 	public static String baseurlEnvironmentTwo = ExcelUtilities.getKeyValueFromExcel(configurationFileName, "Config", "Amazon India Prod Env");
 	public static String baseurlEnvironmentThree = ExcelUtilities.getKeyValueFromExcel(configurationFileName, "Config", "Lenskart Prod Env");
 	public static String baseurlEnvironmentFour = ExcelUtilities.getKeyValueFromExcel(configurationFileName, "Config", "Specsavers Prod Env");
-	
+	public static String baseurlEnvironmentFive = ExcelUtilities.getKeyValueFromExcel(configurationFileName, "Config", "Ranorex Test Env");
+	public static String baseurlEnvironmentSix = ExcelUtilities.getKeyValueFromExcel(configurationFileName, "Config", "Evosys Test Env");
+
 	//Mobile Application : Configuration Data
 	public static String nodeJSPath = ExcelUtilities.getKeyValueFromExcel(configurationFileName, "Config", "Node JS Path");
 	public static String mobileDeviceName = ExcelUtilities.getKeyValueFromExcel(configurationFileName, "Config", "Device Name");
