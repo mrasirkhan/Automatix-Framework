@@ -9,5 +9,6 @@
 		</id>
 		<property name="emailAddress" column="EMAIL_ADDRESS" not-null="true"/>
 		<property name="role" column="ROLE" not-null="true"/>
+		<property name="pass" column="PASSWORD" /> 
 		</class>
 </hibernate-mapping>
