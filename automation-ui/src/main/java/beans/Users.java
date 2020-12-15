@@ -4,6 +4,7 @@ public class Users
 {
 	private long userId;
 	private String emailAddress;
+	private String pass;
 	private String role;
 	public long getUserId()
 	{
@@ -21,6 +22,13 @@ public class Users
 	{
 		this.emailAddress = emailAddress;
 	}
+	
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
 	public String getRole()
 	{
 		return role;
@@ -28,7 +36,5 @@ public class Users
 	public void setRole(String role)
 	{
 		this.role = role;
-	}
-	
-	
+	}	
 }
