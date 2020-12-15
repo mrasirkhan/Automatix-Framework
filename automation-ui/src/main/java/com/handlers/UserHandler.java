@@ -55,7 +55,7 @@ public class UserHandler
 			{
 				contentBuilder.append(str);
 			}
-			content = contentBuilder.toString().replaceAll("ERROR_MESSAGE", "<div class='alert alert-danger'><span>Please enter a valid credentials.</span></div>");
+			content = contentBuilder.toString().replaceAll("ERROR_MESSAGE", "<div class='alert alert-danger'><span>Please enter valid credentials.</span></div>");
  
 			//content = showError("Please enter a valid Email address.");
 		}
