@@ -24,6 +24,8 @@ public class AllServiceHandler implements HttpHandler
 {
 
 	private static final String EMAILID = "email";
+	private static final String PASSWORD = "password";
+
 
 	public void handle(HttpExchange httpExchange) throws IOException
 	{
@@ -56,13 +58,15 @@ public class AllServiceHandler implements HttpHandler
 				{
 					emailIdSession = (String) httpExchange.getHttpContext().getAttributes().get(EMAILID);
 					String emailId = (String) dataMap.get(EMAILID);
+					String password = (String) dataMap.get(PASSWORD);
+				
 					if (null == emailId || emailId.isEmpty())
 					{
-						response = UserHandler.validateUser(emailIdSession, httpExchange);
+						response = UserHandler.validateUser(emailIdSession, password, httpExchange);
 					}
 					else
 					{
-						response = UserHandler.validateUser(emailId, httpExchange);
+						response = UserHandler.validateUser(emailId, password, httpExchange);
 					}
 					break;
 				}
