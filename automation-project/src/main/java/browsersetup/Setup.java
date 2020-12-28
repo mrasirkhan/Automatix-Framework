@@ -51,9 +51,9 @@ public class Setup extends BaseClass {
 	private WebDriver driver = null;
 	private AndroidDriver androidDriver = null;
 	private IOSDriver iOSDriver = null;
-	// static String driverPath = System.getProperty("user.dir");
+	static String driverPath = System.getProperty("user.dir");
 	static String driverPathIE = ConfigurationData.driverPathIE;
-	static String driverPathChrome = ConfigurationData.driverPathChrome;
+	static String driverPathChrome = driverPath+ConfigurationData.driverPathChrome; //ConfigurationData.driverPathChrome;
 	static String driverPathFirefox = ConfigurationData.driverPathFirefox;
 
 	@SuppressWarnings("deprecation")
