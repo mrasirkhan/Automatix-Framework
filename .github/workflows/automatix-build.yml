@@ -2,7 +2,7 @@ name: Automatix CI
 
 on:
   push:
-    branches: [ FTP ]
+    branches: [ FPT ]
 
 jobs:
   compile:
