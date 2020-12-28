@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [windows-latest]
     name: Running Java ${{ matrix.java }} compile
     steps:
     - uses: actions/checkout@v2
@@ -18,12 +18,16 @@ jobs:
       with:
         java-version: 1.8
     - name: Compile code
+      working-directory:  ./automation-project
       run: mvn compile
 
   test:
     runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
     name: Running tests
-    needs: compile
+    needs: [compile]
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8
@@ -31,12 +35,16 @@ jobs:
         with:
           java-version: 1.8
       - name: Run unit tests
+        working-directory:  ./automation-project
         run: mvn test
 
   build:
     runs-on: ${{ matrix.os }}
-    name: Run mvn build
-    needs: test
+    strategy:
+      matrix:
+        os: [windows-latest]
+    name: Run mvn clean build
+    needs: [test]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
@@ -44,4 +52,5 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file /automation-project/pom.xml -Dmaven.test.skip=true
+      working-directory:  ./automation-project
+      run: mvn -B package --file pom.xml
