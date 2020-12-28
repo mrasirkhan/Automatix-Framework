@@ -12,6 +12,7 @@
 </method-selectors>
 <classes>
 <class name="testscripts.webportal.LenskartBuyScripts"/>
+<class name="testscripts.webportal.LenskartBuyScripts1"/>
 </classes>
 </test>
 </suite>
