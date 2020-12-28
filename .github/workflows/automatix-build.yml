@@ -2,7 +2,7 @@ name: Automatix CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ FTP ]
 
 jobs:
   compile:
@@ -53,4 +53,4 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       working-directory:  ./BMIcalculator
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -DskipTests
