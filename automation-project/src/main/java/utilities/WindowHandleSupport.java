@@ -11,7 +11,7 @@ public class WindowHandleSupport
 	{
 		return driver.getWindowHandle();
 	}
-	
+
 /*	public static WebDriver getRequiredWindowDriver(WebDriver driver,String pageTitle) throws InterruptedException
 	{
 		WebDriver reuiredWindowDriver = null;
@@ -33,6 +33,7 @@ public class WindowHandleSupport
 	
 	public static WebDriver getRequiredWindowDriverWithHandle(WebDriver driver,String pageHandle) throws InterruptedException
 	{
+		System.out.println("Testing");
 		WebDriver reuiredWindowDriver = null;
     	Thread.sleep(2000);
     	Set<String> windowHandles = driver.getWindowHandles();
