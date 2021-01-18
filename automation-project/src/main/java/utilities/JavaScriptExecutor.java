@@ -9,7 +9,6 @@ public class JavaScriptExecutor
 {
 	public static String getValueForJavaScript(WebDriver driver,String javaScript)
 	{
-		System.out.println("JavascriptExecutor");
     	JavascriptExecutor js = (JavascriptExecutor)driver;
     	return (String) js.executeScript(javaScript);
 	}
