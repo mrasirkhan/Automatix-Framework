@@ -32,9 +32,9 @@ public class FrameStylerPage extends BaseClass {
 		 * this);
 		 */
 		setDriver(driver);
-		getDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		// JavaScriptExecutor.waitUntilPageLoad(getDriver());
-		wait = new WebDriverWait(getDriver(), 15);
+		getDriver().manage().timeouts().pageLoadTimeout(Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "pageLoadTimeout_PO")), TimeUnit.SECONDS);
+		//JavaScriptExecutor.waitUntilPageLoad(getDriver());
+		wait = new WebDriverWait(getDriver(), Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "webdriverwait")));
 		// PageFactory.initElements( driver, this);
 		PageFactory.initElements(new AjaxElementLocatorFactory(getDriver(), 20), this);
 	}

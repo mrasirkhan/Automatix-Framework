@@ -24,14 +24,16 @@ import browsersetup.BaseClass;
 
 
 public class ListenerClass extends BaseClass implements ITestListener,IInvokedMethodListener{
+String result1="setup";
+String result2="quit";
 
 	private String createDirectory()
 	{
-		File dir = new File(System.getProperty("user.dir") + "/Screenshots/" + new SimpleDateFormat("ddMMyyyy").format(Calendar.getInstance().getTime()));
+		File dir = new File(System.getProperty("user.dir")+ utilities.ReadProperties.getProperty(configPropertie, location, "screenshot") + new SimpleDateFormat(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat8")).format(Calendar.getInstance().getTime()));
 
 		if(dir.exists())
 		{
-			System.out.println("A folder with name '"+new SimpleDateFormat("ddMMyyyy").format(Calendar.getInstance().getTime())+"' already exist");
+			System.out.println("A folder with name '"+new SimpleDateFormat(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat8")).format(Calendar.getInstance().getTime())+"' already exist");
 		}
 		else
 		{
@@ -66,7 +68,7 @@ public class ListenerClass extends BaseClass implements ITestListener,IInvokedMe
 		try
 		{
 			String path = createDirectory() + "\\";
-			String file = path + result.getName() + "_" + new SimpleDateFormat("ddMMyyyy_HHmmss").format(Calendar.getInstance().getTime()) +".png";
+			String file = path + result.getName() + "_" + new SimpleDateFormat(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat4")).format(Calendar.getInstance().getTime()) +utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat4")+utilities.ReadProperties.getProperty(filenamesPropertie, location, "png");
 			//Implement a Switch Case Over
 			/*switch(result.getInstanceName())
 			{
@@ -130,18 +132,18 @@ public class ListenerClass extends BaseClass implements ITestListener,IInvokedMe
 			default :
 				System.out.println("No Driver Found");
 			}*/	
-			if(((BaseClass) currentClass).getClientName().equals("Web Portal"))
+			if(((BaseClass) currentClass).getAutomationType().equals(utilities.ReadProperties.getProperty(UIPropertie, location, "automationType1")))
 				ReportBaseClass.takeSnapShot(driver,file);
 			if(((BaseClass) currentClass).getAssertMessage() != null)
 			{
 				for(String eachString : ((BaseClass) currentClass).getAssertMessage())
 					Reporter.log(eachString);
 			}
-			if(((BaseClass) currentClass).getClientName().equals("Web Portal"))
+			if(((BaseClass) currentClass).getAutomationType().equals(utilities.ReadProperties.getProperty(UIPropertie, location, "automationType1")))
 				Reporter.log(file);
-			else if(((BaseClass) currentClass).getClientName().equals("Web Services"))
+			else if(((BaseClass) currentClass).getAutomationType().equals(utilities.ReadProperties.getProperty(UIPropertie, location, "automationType3")))
 				Reporter.log("NA");
-			else if(((BaseClass) currentClass).getClientName().equals("Mobile"))
+			else if(((BaseClass) currentClass).getAutomationType().equals(utilities.ReadProperties.getProperty(UIPropertie, location, "automationType2")))
 				Reporter.log("NA");
 			//Reporter.log(file.replace("D:\\Repository\\d2cautomation", "\\"+"\\10.72.167.129"));
 			//Reporter.log("<a href=/screenshots/" + file + "><img src=/screenshots/" + file + " style=width:250px;height:250px;/>" + file + "</a><br/>");
@@ -222,7 +224,7 @@ public class ListenerClass extends BaseClass implements ITestListener,IInvokedMe
 	{
 		if(method.isTestMethod())
 		{	
-			if(!iTResult.getName().equalsIgnoreCase("setup") && !iTResult.getName().equalsIgnoreCase("quit"))
+			if(!iTResult.getName().equalsIgnoreCase(result1) && !iTResult.getName().equalsIgnoreCase(result2))
 			{
 				if(TestMethodErrorBuffer.get()!=null)
 				{

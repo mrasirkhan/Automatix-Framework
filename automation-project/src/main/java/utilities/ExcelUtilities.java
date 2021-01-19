@@ -19,11 +19,14 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import browsersetup.BaseClass;
 
-public class ExcelUtilities 
-{
+
+public class ExcelUtilities extends BaseClass
+{	
 	static String projectPath = System.getProperty("user.dir");
-
+	static String exceldatafile =utilities.ReadProperties.getProperty(configPropertie, location,"testdatafile");
+	
 	@SuppressWarnings("resource")
 	public static String getExcelCellValue(String fileName,String sheetName,int rowNumber,int columnNumber) throws IOException
 	{
@@ -31,7 +34,7 @@ public class ExcelUtilities
 		path = path.replace("bin", "src");
 		//Create a object of File class to open xlsx file
 		File file = new File(path + "../ExcelDataFiles/"+fileName);*/
-		File file =    new File(projectPath + "\\ExcelDataFiles\\"+fileName);
+		File file =    new File(projectPath + exceldatafile+fileName);
 		//Create an object of FileInputStream class to read excel file
 		FileInputStream inputStream = new FileInputStream(file);
 		String cellValue = null;
@@ -39,13 +42,13 @@ public class ExcelUtilities
 		//Find the file extension by spliting file name in substring and getting only extension name
 		String fileExtensionName = fileName.substring(fileName.indexOf("."));
 		//Check condition if the file is xlsx file
-		if(fileExtensionName.equals(".xlsx"))
+		if(fileExtensionName.equals(utilities.ReadProperties.getProperty(filenamesPropertie, location,"xlsx")))
 		{
 			//If it is xlsx file then create object of XSSFWorkbook class
 			excelWorkbook = new XSSFWorkbook(inputStream);
 		}
 		//Check condition if the file is xls file
-		else if(fileExtensionName.equals(".xls"))
+		else if(fileExtensionName.equals(utilities.ReadProperties.getProperty(filenamesPropertie, location,"xls")))
 		{
 			//If it is xls file then create object of XSSFWorkbook class
 			excelWorkbook = new HSSFWorkbook(inputStream);
@@ -78,7 +81,7 @@ public class ExcelUtilities
 							break;
 							case 1:	cellValue = row.getCell(j).getStringCellValue();
 							break;
-							case 2: SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+							case 2: SimpleDateFormat sdf = new SimpleDateFormat(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat9"));
 							cellValue = sdf.format(row.getCell(j).getDateCellValue());
 							break;
 							case 4: cellValue = String.valueOf(row.getCell(j).getBooleanCellValue());
@@ -133,7 +136,7 @@ public class ExcelUtilities
 
 		try
 		{                      
-			File file =    new File(projectPath + "\\ExcelDataFiles\\"+fileName);
+			File file =    new File(projectPath + exceldatafile+fileName);
 			// Create a FileInputStream by passing the location of excel
 			FileInputStream input = new FileInputStream(file);
 
@@ -141,13 +144,13 @@ public class ExcelUtilities
 			//Find the file extension by spliting file name in substring and getting only extension name
 			String fileExtensionName = fileName.substring(fileName.indexOf("."));
 			//Check condition if the file is xlsx file
-			if(fileExtensionName.equals(".xlsx"))
+			if(fileExtensionName.equals(utilities.ReadProperties.getProperty(filenamesPropertie, location,"xlsx")))
 			{
 				//If it is xlsx file then create object of XSSFWorkbook class
 				excelWorkbook = new XSSFWorkbook(input);
 			}
 			//Check condition if the file is xls file
-			else if(fileExtensionName.equals(".xls"))
+			else if(fileExtensionName.equals(utilities.ReadProperties.getProperty(filenamesPropertie, location,"xls")))
 			{
 				//If it is xls file then create object of XSSFWorkbook class
 				excelWorkbook = new HSSFWorkbook(input);
@@ -183,7 +186,7 @@ public class ExcelUtilities
 							break;
 							case 1:	key = row.getCell(j).getStringCellValue();
 							break;
-							case 2: SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+							case 2: SimpleDateFormat sdf = new SimpleDateFormat(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat9"));
 							key = sdf.format(row.getCell(j).getDateCellValue());
 							break;
 							case 4: key = String.valueOf(row.getCell(j).getBooleanCellValue());
@@ -210,7 +213,7 @@ public class ExcelUtilities
 							break;
 							case 1:	val = row.getCell(j).getStringCellValue();
 							break;
-							case 2: SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+							case 2: SimpleDateFormat sdf = new SimpleDateFormat(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat9"));
 							val = sdf.format(row.getCell(j).getDateCellValue());
 							break;
 							case 4: val = String.valueOf(row.getCell(j).getBooleanCellValue());

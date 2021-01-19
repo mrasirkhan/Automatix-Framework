@@ -22,15 +22,17 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class DumpReportToDB 
+import browsersetup.BaseClass;
+
+public class DumpReportToDB extends BaseClass
 {
 	@SuppressWarnings("unused")
 	public void generateExcelReport() throws ParserConfigurationException, SAXException, IOException, InterruptedException, SQLException, ParseException
 	{
 		String path = DumpReportToDB.class.getClassLoader().getResource("./").getPath();
 		//path = path.replace("bin", "src");
-
-		File xmlFile = new File(path + "../surefire-reports/testng-results.xml");
+		String dbname=utilities.ReadProperties.getProperty(databasePropertie, location, "databasename");
+		File xmlFile = new File(path + utilities.ReadProperties.getProperty(filenamesPropertie, location, "resultxml"));
 
 		//XML Parsing
 		DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
@@ -40,7 +42,7 @@ public class DumpReportToDB
 
 		XSSFWorkbook book = new XSSFWorkbook();
 		NodeList testNodeList = doc.getElementsByTagName("test");
-		List<String> executionID = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM vitaminshopeeautomationdb.execution_details Where Exec_Status = 'Completed' Order By Date desc;", "EXECUTION_ID", "vitaminshopeeautomationdb", "Local");
+		List<String> executionID = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM "+dbname+".execution_details Where Exec_Status = 'Completed' Order By Date desc;", "EXECUTION_ID", dbname, "Local");
 		int latestExecutionID = Integer.parseInt(executionID.get(0));
 		System.out.println("Execution ID : " + latestExecutionID);
 
@@ -201,12 +203,12 @@ public class DumpReportToDB
 							System.out.println("Test Outcome : " + testOutcome);
 						}
 						if(!"skip".equalsIgnoreCase(methodStatus))
-							DatabaseHelper.updateQuery("Insert Into raw_results (Script_Name,Status,Test_Outcome,SCREEN_SHOT,Execution_ID,Start_Time,End_Time,Total_Script_Time) Values ('"+methodName+"', '"+methodStatus+"', '"+testOutcome+"', '"+screenshotpath+"',"+latestExecutionID+", '"+startedAt+"', '"+finishedAt+"',"+scriptTime+");", "vitaminshopeeautomationdb", "Local");
+							DatabaseHelper.updateQuery(utilities.ReadProperties.getProperty(databasePropertie, location, "sql_Status")+methodName+"', '"+methodStatus+"', '"+testOutcome+"', '"+screenshotpath+"',"+latestExecutionID+", '"+startedAt+"', '"+finishedAt+"',"+scriptTime+");", dbname, "Local");
 					}
 				}
 			}
 		}
-		FileOutputStream fout = new FileOutputStream(path + "../../Reports/Report.xlsx");
+		FileOutputStream fout = new FileOutputStream(path + utilities.ReadProperties.getProperty(filenamesPropertie, location, "Report"));
 		book.write(fout);
 		fout.close();
 		System.out.println("Report Generated");
