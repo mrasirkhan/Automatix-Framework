@@ -34,30 +34,33 @@ import testdata.generictestdata.ConfigurationData;
 import utilities.JavaScriptExecutor;
 
 public class Setup extends BaseClass {
-	static String baseurlEnvironmentOne = ConfigurationData.baseurlEnvironmentOne;
-	static String baseurlEnvironmentTwo = ConfigurationData.baseurlEnvironmentTwo;
-	static String baseurlEnvironmentThree = ConfigurationData.baseurlEnvironmentThree;
-	static String baseurlEnvironmentFour = ConfigurationData.baseurlEnvironmentFour;
+	
+	static String baseurlEnvironmentOne = utilities.ReadProperties.getProperty(UIPropertie, location,"webEnvironment1");//getProperty(UIprops, "AMAZONUSPRODENV");//ConfigurationData.baseurlEnvironmentOne;
+	static String baseurlEnvironmentTwo = utilities.ReadProperties.getProperty(UIPropertie, location, "webEnvironment2");//ConfigurationData.baseurlEnvironmentTwo;
+	static String baseurlEnvironmentThree = utilities.ReadProperties.getProperty(UIPropertie, location, "webEnvironment3");//ConfigurationData.baseurlEnvironmentThree;
+	static String baseurlEnvironmentFour = utilities.ReadProperties.getProperty(UIPropertie, location, "webEnvironment4");//ConfigurationData.baseurlEnvironmentFour;
 
 	// Mobile Application : Configuration Data
-	static String nodeJSPath = ConfigurationData.nodeJSPath;
-	static String mobileDeviceName = ConfigurationData.mobileDeviceName;
-	static String mobilePlatformVersion = ConfigurationData.mobilePlatformVersion;
-	static String appPackage = ConfigurationData.appPackage;
-	static String appActivity = ConfigurationData.appActivity;
+	static String nodeJSPath = utilities.ReadProperties.getProperty(filenamesPropertie, location,"NodeJSPath");//ConfigurationData.nodeJSPath;
+	static String mobileDeviceName =utilities.ReadProperties.getProperty(UIPropertie, location, "andDeviceName"); //ConfigurationData.mobileDeviceName;
+	static String mobilePlatformVersion = utilities.ReadProperties.getProperty(UIPropertie, location, "AndropidDeandVersionviceName");//ConfigurationData.mobilePlatformVersion;
+	static String appPackage = utilities.ReadProperties.getProperty(UIPropertie, location, "androidEnvironment1_Package");//ConfigurationData.appPackage;
+	static String appActivity = utilities.ReadProperties.getProperty(UIPropertie, location, "androidEnvironment1_Activity");//ConfigurationData.appActivity;
 
 	private WebDriver driver = null;
 	private AndroidDriver androidDriver = null;
 	private IOSDriver iOSDriver = null;
-	// static String driverPath = System.getProperty("user.dir");
-	static String driverPathIE = ConfigurationData.driverPathIE;
-	static String driverPathChrome = ConfigurationData.driverPathChrome;
-	static String driverPathFirefox = ConfigurationData.driverPathFirefox;
+	
+	static String driverPath =System.getProperty("user.dir");// getProperty(filenameprops, "systemdir");
+	static String driverPathIE = driverPath+utilities.ReadProperties.getProperty(configPropertie, location, "IEDriver");//ConfigurationData.driverPathIE;
+	static String driverPathChrome = driverPath+utilities.ReadProperties.getProperty(configPropertie, location, "chromDriver");//driverPath+ ConfigurationData.driverPathChrome;//ConfigurationData.driverPathChrome;
+	static String driverPathFirefox = driverPath+utilities.ReadProperties.getProperty(configPropertie, location, "firfoxDriver");//ConfigurationData.driverPathFirefox;
+	String implicitWait=utilities.ReadProperties.getProperty(configPropertie, location, "implicitWait");
 
 	@SuppressWarnings("deprecation")
-	public WebDriver setupBrowser(String browser, String environment, String clientName)
+	public WebDriver setupBrowser(String browser, String environment, String automationType)
 			throws InterruptedException, MalformedURLException {
-		if (browser.equalsIgnoreCase("Firefox")) {
+		if (browser.equalsIgnoreCase(utilities.ReadProperties.getProperty(UIPropertie, location, "browser2"))) {
 
 			// File pathToFirefoxBinary = new File("C:\\Program Files\\Mozilla
 			// Firefox\\firefox.exe");
@@ -78,8 +81,8 @@ public class Setup extends BaseClass {
 			// capabilities);
 			// driver = new FirefoxDriver(firefoxbin, firefoxProfile);
 			// driver = new FirefoxDriver(capabilities);
-			driver = new RemoteWebDriver(new URL("http://localhost:5566/wd/hub"), capabilities);
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver = new RemoteWebDriver(new URL(utilities.ReadProperties.getProperty(UIPropertie, location, "node1")), capabilities);
+			driver.manage().timeouts().implicitlyWait(Long.parseLong(implicitWait), TimeUnit.SECONDS);
 
 			/*
 			 * System.setProperty("webdriver.gecko.driver", driverPathFirefox);
@@ -109,7 +112,7 @@ public class Setup extends BaseClass {
 			 * URL("http://localhost:5566/wd/hub"), capabilities);
 			 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			 */
-		} else if (browser.equalsIgnoreCase("chrome")) {
+		} else if (browser.equalsIgnoreCase(utilities.ReadProperties.getProperty(UIPropertie, location, "browser1"))) {
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("start-maximized");
 			options.addArguments("disable-infobars");
@@ -124,8 +127,8 @@ public class Setup extends BaseClass {
 			driver = new ChromeDriver(capabilities);
 			// driver = new RemoteWebDriver(new
 			// URL("http://localhost:5566/wd/hub"), capabilities);
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		} else if (browser.equalsIgnoreCase("Internet Explorer")) {
+			driver.manage().timeouts().implicitlyWait(Long.parseLong(implicitWait), TimeUnit.SECONDS);
+		} else if (browser.equalsIgnoreCase(utilities.ReadProperties.getProperty(UIPropertie, location, "browser3"))) {
 			System.setProperty("webdriver.ie.driver", driverPathIE);
 			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
 			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
@@ -150,9 +153,9 @@ public class Setup extends BaseClass {
 			// If IE fail to work, please remove this line and remove enable
 			// protected mode for all the 4 zones from Internet options
 			// driver = new InternetExplorerDriver(dc);
-			driver = new RemoteWebDriver(new URL("http://localhost:5566/wd/hub"), capabilities);
+			driver = new RemoteWebDriver(new URL(utilities.ReadProperties.getProperty(UIPropertie, location, "node1")), capabilities);
 			driver.manage().deleteAllCookies();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Long.parseLong(implicitWait), TimeUnit.SECONDS);
 		}
 
 		/*
@@ -163,26 +166,27 @@ public class Setup extends BaseClass {
 		 * //System.setProperty("webdriver.chrome.driver", driverPath); //driver
 		 * = new ChromeDriver(); //driver = new FirefoxDriver();
 		 */
+	//	System.out.println(props.getProperty("ProdEnv"));
 		switch (environment.toUpperCase()) {
-		case "AMAZON US PROD ENV":
+		case environmentName1:
 			driver.navigate().to(baseurlEnvironmentOne);
 			break;
-		case "AMAZON INDIA PROD ENV":
+		case environmentName2:
 			driver.navigate().to(baseurlEnvironmentTwo);
 			break;
-		case "LENSKART PROD ENV":
+		case environmentName3:
 			driver.navigate().to(baseurlEnvironmentThree);
 			break;
-		case "SPECSAVERS PROD ENV":
+		case environmentName4:
 			driver.navigate().to(baseurlEnvironmentFour);
 			break;
-		case "AMAZON WEB SERVICES":
+		case environmentName5:
 			// driver.navigate().to(baseurlEnvironmentThree);
 			break;
-		case "ANDROID AMAZON APP":
+		case environmentName6:
 			// keyValueNumber = 2;
 			break;
-		case "IOS SPEAKIT APP":
+		case environmentName7:
 			// keyValueNumber = 3;
 			break;
 		default:
@@ -204,16 +208,17 @@ public class Setup extends BaseClass {
 		 * JavaScriptExecutor.waitUntilPageLoad(driver); else
 		 * driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 		 */
-		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+		String pageload=utilities.ReadProperties.getProperty(configPropertie, location, "pageLoadTimeout");
+		driver.manage().timeouts().pageLoadTimeout(Long.parseLong(pageload), TimeUnit.SECONDS);
 		// JavaScriptExecutor.waitUntilPageLoad(driver);
-		driver.manage().window().maximize();
+	//	driver.manage().window().maximize();
 		return driver;
 	}
-
-	public AndroidDriver setupAndroidDevice(String browser, String environment, String clientName)
+	
+	public AndroidDriver setupAndroidDevice(String browser, String environment, String automationType)
 			throws InterruptedException {
 
-		if (browser.equalsIgnoreCase("Android")) {
+		if (browser.equalsIgnoreCase(utilities.ReadProperties.getProperty(UIPropertie, location, "browser4"))) {
 			/*
 			 * AppiumDriverLocalService appiumDriverLocalService =
 			 * AppiumDriverLocalService .buildService(new
@@ -246,10 +251,10 @@ public class Setup extends BaseClass {
 
 			try {
 
-				androidDriver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+				androidDriver = new AndroidDriver(new URL(utilities.ReadProperties.getProperty(UIPropertie, location, "node2")), capabilities);
 				// driver.manage().timeouts().implicitlyWait(10,
 				// TimeUnit.SECONDS);
-				androidDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				androidDriver.manage().timeouts().implicitlyWait(Long.parseLong(implicitWait), TimeUnit.SECONDS);
 			} catch (Exception me) {
 				me.printStackTrace();
 			}
@@ -281,7 +286,7 @@ public class Setup extends BaseClass {
 		return androidDriver;
 	}
 
-	public IOSDriver setupiOSDevice(String browser, String environment, String clientName)
+	public IOSDriver setupiOSDevice(String browser, String environment, String automationType)
 			throws MalformedURLException, InterruptedException {
 
 		// AppiumDriverLocalService service = AppiumDriverLocalService
@@ -319,12 +324,12 @@ public class Setup extends BaseClass {
 		// capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION,"1.6.5");
 
 		// Set the platform name
-		capabilities.setCapability("deviceName", "iPhone");
-		capabilities.setCapability("udid", "f3123c934dad6b5b326dff90fb05ab6b9d9e6e86");
-		capabilities.setCapability("app", "/Users/GTC/Downloads/speakIt.ipa");
+		capabilities.setCapability("deviceName", utilities.ReadProperties.getProperty(UIPropertie, location, "iOSDeviceName1"));
+		capabilities.setCapability("udid", utilities.ReadProperties.getProperty(UIPropertie, location, "udid"));
+		capabilities.setCapability("app", utilities.ReadProperties.getProperty(UIPropertie, location, "app"));
 		capabilities.setCapability(IOSMobileCapabilityType.LAUNCH_TIMEOUT, 500000);
 		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
-		capabilities.setCapability("platformName", "iOS");
+		capabilities.setCapability("platformName",  utilities.ReadProperties.getProperty(UIPropertie, location, "iOSDevice"));
 
 		// Set Version for simulator
 		// capabilities.setCapability("platformVersion", "11.1");
@@ -346,13 +351,13 @@ public class Setup extends BaseClass {
 
 		// capabilities.setCapability("nativeWebTap","true");
 		// capabilities.setCapability("startIWDP","true");
-		capabilities.setCapability("autoAcceptAlerts", "true");
+		capabilities.setCapability("autoAcceptAlerts", true);
 
 		// timeout
 
 		// start the session with host/port. Make sure it matches with Appium
 		// server you start at
-		iOSDriver = new IOSDriver(new URL("http://192.168.15.54:4728/wd/hub"), capabilities);
+		iOSDriver = new IOSDriver(new URL(utilities.ReadProperties.getProperty(UIPropertie, location, "node3")), capabilities);
 		// iOSDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
 		return iOSDriver;

@@ -7,15 +7,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
+import browsersetup.BaseClass;
 import testdata.generictestdata.ConfigurationData;
+import utilities.ReadProperties;
 
 
-public class DatabaseHelper 
-{
-	static String hostautomationdb = ConfigurationData.databaseHostNameautomationdb;
-	static String userNameautomationdb = ConfigurationData.databaseUserNameautomationdb;
-	static String passwordautomationdb = ConfigurationData.databasePasswordautomationdb;	
+public class DatabaseHelper extends BaseClass
+{	
+	static String hostautomationdb = utilities.ReadProperties.getProperty(databasePropertie, location, "hostDatabase");   //ConfigurationData.databaseHostNameautomationdb;
+	static String userNameautomationdb =utilities.ReadProperties.getProperty(databasePropertie, location, "dbUsername");  // ConfigurationData.databaseUserNameautomationdb;
+	static String passwordautomationdb =utilities.ReadProperties.getProperty(databasePropertie, location, "dbPassword");  // ConfigurationData.databasePasswordautomationdb;	
 
 	/*
 	 * Execute a DDL Query
@@ -151,7 +154,7 @@ public class DatabaseHelper
 	private static Statement createDBConnection(String schemaName,String environment) throws SQLException
 	{
 		Connection connection = null;
-		if(environment.contains("Local"))
+		if(environment.contains(utilities.ReadProperties.getProperty(databasePropertie, location, "dbEnvironment")))
 		{
 			try
 			{
@@ -164,5 +167,15 @@ public class DatabaseHelper
 		}
 		return connection.createStatement();
 	}
-
+	
+	/*public static Properties databaseprops = null;
+	static 
+	{
+		databaseprops = ReadProperties.load(database,location);
+	}
+	public static String getPropertyDB(Properties props,String key)
+	{		
+		return props.getProperty(key) ;
+		
+	}*/
 }

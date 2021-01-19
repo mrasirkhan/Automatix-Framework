@@ -23,7 +23,7 @@ public class MAmazonProductDetailPage extends BaseClass
 	{
 		setAndroidDriver(driver);
 		//getAndroidDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		wait = new WebDriverWait(getAndroidDriver(), 15);
+		wait = new WebDriverWait(getAndroidDriver(), Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "webdriverwait")));
 		//PageFactory.initElements( driver, this);
 		PageFactory.initElements(new AjaxElementLocatorFactory(getAndroidDriver(), 20), this);
 	}

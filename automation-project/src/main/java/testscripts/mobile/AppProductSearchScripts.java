@@ -18,11 +18,11 @@ public class AppProductSearchScripts extends BaseClass
 {
 	
 	@Test(retryAnalyzer = helpers.RetryMechanism.class, groups = { "Regression","Mobile","App Amazon Buy"})
-	@Parameters({ "environment", "clientName" })
-	public void searchProduct(String environment, String clientName) throws InterruptedException
+	@Parameters({ "environment", "automationType" })
+	public void searchProduct(String environment, String automationType) throws InterruptedException
 	{
-		String userName = ConfigurationData.getUserDetails(environment, clientName, "Automation Username 1");
-		String password = ConfigurationData.getUserDetails(environment, clientName, "Automation Password 1");
+		String userName = ConfigurationData.getUserDetails(environment, automationType, "Automation Username 1");
+		String password = ConfigurationData.getUserDetails(environment, automationType, "Automation Password 1");
 		MAmazonHomePage mAmazonHomePage = new MAmazonHomePage(getAndroidDriver());
 		//mAmazonHomePage = mAmazonHomePage.clickSkipLoginButton();
 		mAmazonHomePage = mAmazonHomePage.clickSignInButton();
@@ -31,11 +31,11 @@ public class AppProductSearchScripts extends BaseClass
 		mAmazonHomePage = mAmazonHomePage.enterPassword(password);
 		mAmazonHomePage = mAmazonHomePage.clickSignInSubmitButton();
 		//"iPhone 7 mobiles 32 GB"
-		MAmazonSearchPage mAmazonSearchPage = mAmazonHomePage.searchProduct(ExcelUtilities.getKeyValueFromExcelWithPosition("TestCaseData.xlsx", "HomePage_"+environment.toUpperCase(), "TC1", 2));
+		MAmazonSearchPage mAmazonSearchPage = mAmazonHomePage.searchProduct(ExcelUtilities.getKeyValueFromExcelWithPosition(testcasedataFileName, "HomePage_"+environment.toUpperCase(), "TC1", 2));
 		//"Apple iPhone 7 (Black, 32GB)"
-		MAmazonProductDetailPage mAmazonProductDetailPage = mAmazonSearchPage.selectProduct(ExcelUtilities.getKeyValueFromExcelWithPosition("TestCaseData.xlsx", "HomePage_"+environment.toUpperCase(), "TC1", 3));
+		MAmazonProductDetailPage mAmazonProductDetailPage = mAmazonSearchPage.selectProduct(ExcelUtilities.getKeyValueFromExcelWithPosition(testcasedataFileName, "HomePage_"+environment.toUpperCase(), "TC1", 3));
 		String actualProductName = mAmazonProductDetailPage.getProductName();
-		String expectedProductName = ExcelUtilities.getKeyValueFromExcelWithPosition("TestCaseData.xlsx", "HomePage_"+environment.toUpperCase(), "TC1", 3);
+		String expectedProductName = ExcelUtilities.getKeyValueFromExcelWithPosition(testcasedataFileName, "HomePage_"+environment.toUpperCase(), "TC1", 3);
 		//Assert.assertEquals(actualProductName, expectedProductName);
 	}
 

@@ -4,9 +4,12 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
+import javax.swing.text.Utilities;
 
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
+import org.aspectj.apache.bcel.classfile.Utility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.os.WindowsUtils;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,19 +25,46 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import testdata.generictestdata.ConfigurationData;
+import utilities.ReadProperties;
 
 public class BaseClass 
 {
 	private WebDriver driver;
 	public WebDriverWait wait;
 	private List<String> assertMessage;
-	private String clientName;
+	private String automationType;
 	private AppiumDriverLocalService appiumDriverLocalService;
 	private AndroidDriver androidDriver;
 	private IOSDriver iOSDriver;
-	//Mobile Application : Configuration Data
-	static String nodeJSPath = ConfigurationData.nodeJSPath;
+	//Mobile Application : Configuration Data	
+	
+//	public Logger LOG = LoggerFactory.getLogger(BaseClass.class);
+	
+	 public static final String configPropertie = "config.properties"; 
+	 public static final String UIPropertie = "UI.properties"; 
+	 public static final String databasePropertie = "database.properties"; 
+	 public static final String filenamesPropertie = "filenames.properties"; 
+	 public static final String webservicesPropertie = "webservices.properties"; 
+	 public static final String location = "\\properties\\";//xyx.properties;
+	 
+	 public static final String environmentName1 ="AMAZON US PROD ENV";
+	 public static final String environmentName2 ="AMAZON INDIA PROD ENV"; 
+	 public static final String environmentName3 ="LENSKART PROD ENV";
+	 public static final String environmentName4 ="SPECSAVERS PROD ENV";
+	 public static final String environmentName5 ="AMAZON WEB SERVICES";
+	 public static final String environmentName6 ="ANDROID AMAZON APP";
+	 public static final String environmentName7 ="IOS SPEAKIT APP";
+	 
+	 public static final String automationTypeName1 ="MOBILE";
+	 public static final String automationTypeName2 ="WEB PORTAL";
+	 public static final String automationTypeName3 ="WEB SERVICES";
+	 public static final String automationTypeName4 ="FIRM C";
+	 
+	 public static final String databasename=utilities.ReadProperties.getProperty(databasePropertie, location, "databasename");
+	 public static final String dbenvironment=utilities.ReadProperties.getProperty(databasePropertie, location, "dbEnvironment");
 
+	 public static final String testcasedataFileName =utilities.ReadProperties.getProperty(filenamesPropertie, location, "Testcasesdata"); 
+	 
 	public AppiumDriverLocalService getAppiumDriverLocalService() 
 	{
 		return appiumDriverLocalService;
@@ -45,11 +75,11 @@ public class BaseClass
 	}
 
 	/*@BeforeSuite(alwaysRun=true)
-	@Parameters({ "browser","environment","clientName" })
-	public void startAppiumServer(String browser,String environment, String clientName) throws InterruptedException, MalformedURLException 
+	@Parameters({ "browser","environment","automationType" })
+	public void startAppiumServer(String browser,String environment, String automationType) throws InterruptedException, MalformedURLException 
 	{
 		try {
-			if(clientName.equals("Mobile") && browser.equals("Android"))
+			if(automationType.equals("Mobile") && browser.equals("Android"))
 			{
 				setAppiumDriverLocalService(AppiumDriverLocalService.buildService(new AppiumServiceBuilder().usingPort(4723)
 						.usingDriverExecutable(new File(nodeJSPath))
@@ -66,11 +96,11 @@ public class BaseClass
 	}
 
 	@AfterSuite(alwaysRun=true)
-	@Parameters({ "browser","environment","clientName" })
-	public void stopAppiumServer(String browser,String environment, String clientName) throws InterruptedException, MalformedURLException 
+	@Parameters({ "browser","environment","automationType" })
+	public void stopAppiumServer(String browser,String environment, String automationType) throws InterruptedException, MalformedURLException 
 	{
 		try {
-			if(clientName.equals("Mobile") && browser.equals("Android"))
+			if(automationType.equals("Mobile") && browser.equals("Android"))
 			{
 				getAppiumDriverLocalService().stop();
 				WindowsUtils.killByName("adb.exe");
@@ -95,22 +125,22 @@ public class BaseClass
 
 	//@BeforeMethod(timeOut = 300000, alwaysRun=true)
 	@BeforeMethod(alwaysRun=true)
-	@Parameters({ "browser","environment","clientName" })
-	public void setup(String browser,String environment, String clientName) throws InterruptedException, MalformedURLException 
+	@Parameters({ "browser","environment","automationType" })
+	public void setup(String browser,String environment, String automationType) throws InterruptedException, MalformedURLException 
 	{
-		this.setClientName(clientName);
-		if(clientName.equals("Web Portal"))
+		this.setAutomationType(automationType);
+		if(automationType.equals(utilities.ReadProperties.getProperty(UIPropertie, location, "automationType1")))
 		{
 			Setup setup = new Setup();
-			driver = setup.setupBrowser(browser,environment,clientName);
+			driver = setup.setupBrowser(browser,environment,automationType);
 		}
-		else if(clientName.equals("Mobile"))
+		else if(automationType.equals(utilities.ReadProperties.getProperty(UIPropertie, location, "automationType2")))
 		{
 			Setup setup = new Setup();
-			if(browser.equalsIgnoreCase("Android"))
-				androidDriver = setup.setupAndroidDevice(browser,environment,clientName);
-			else if(browser.equalsIgnoreCase("iOS"))
-				iOSDriver = setup.setupiOSDevice(browser, environment, clientName);
+			if(browser.equalsIgnoreCase(utilities.ReadProperties.getProperty(UIPropertie, location, "browser4")))
+				androidDriver = setup.setupAndroidDevice(browser,environment,automationType);
+			else if(browser.equalsIgnoreCase(utilities.ReadProperties.getProperty(UIPropertie, location, "browser5")))
+				iOSDriver = setup.setupiOSDevice(browser, environment, automationType);
 		}
 	}
 
@@ -134,8 +164,8 @@ public class BaseClass
 
 	//@AfterMethod(timeOut = 300000, alwaysRun=true)
 	@AfterMethod(alwaysRun=true)
-	@Parameters({ "browser","clientName" })
-	public void quit(String browser, String clientName) throws InterruptedException 
+	@Parameters({ "browser","automationType" })
+	public void quit(String browser, String automationType) throws InterruptedException 
 	{
 		try
 		{//assertMessage.removeAll(assertMessage);
@@ -151,16 +181,16 @@ public class BaseClass
 		}
 		finally
 		{
-			tearDown(browser,clientName);
+			tearDown(browser,automationType);
 		}
 	}
 
 
-	/*@Parameters({ "clientName" })
-	public String setupClientDB(String clientName) throws InterruptedException 
+	/*@Parameters({ "automationType" })
+	public String setupClientDB(String automationType) throws InterruptedException 
 	{
 		String dbName = null;
-		switch(clientName.toUpperCase())
+		switch(automationType.toUpperCase())
 		{
 		case "SEI" :
 			dbName = "coredb";
@@ -175,30 +205,30 @@ public class BaseClass
 			dbName = "whidb";
 			break;
 		default :
-			Assert.fail("Database for " + clientName + "dosen't exsists");
+			Assert.fail("Database for " + automationType + "dosen't exsists");
 		}
 		return dbName;
 	}*/
 
-	private void tearDown(String browser, String clientName)
+	private void tearDown(String browser, String automationType)
 	{
 		try 
 		{
-			if(clientName.equals("Web Portal"))
+			if(automationType.equals(utilities.ReadProperties.getProperty(UIPropertie, location, "automationType1")))
 			{
 				driver.close();
 				driver.quit();
 			}
 
-			if(clientName.equals("Mobile"))
+			if(automationType.equals(utilities.ReadProperties.getProperty(UIPropertie, location, "automationType2")))
 			{
 				//getAndroidDriver().closeApp();
-				if (browser.equalsIgnoreCase("Android")) 
+				if (browser.equalsIgnoreCase(utilities.ReadProperties.getProperty(UIPropertie, location, "browser4")))
 				{
 					getAndroidDriver().quit();
-					WindowsUtils.killByName("adb.exe");
+					WindowsUtils.killByName(utilities.ReadProperties.getProperty(filenamesPropertie, location, "adb"));
 				}
-				if (browser.equalsIgnoreCase("iOS")) 
+				if (browser.equalsIgnoreCase(utilities.ReadProperties.getProperty(UIPropertie, location, "browser5")))
 				{
 					getiOSDriver().quit();
 				}
@@ -237,14 +267,21 @@ public class BaseClass
 	{
 		this.driver = driver;
 	}
-
-	public String getClientName() {
-		return clientName;
+	
+	public String getAutomationType() {
+		return automationType;
 	}
 
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
+	public void setAutomationType(String automationType) {
+		this.automationType = automationType;
 	}
+	
+	/*
+	 * public String getClientName() { return automationType; }
+	 * 
+	 * public void setClientName(String automationType) { this.automationType =
+	 * automationType; }
+	 */
 
 	public AndroidDriver getAndroidDriver() {
 		return androidDriver;
@@ -253,4 +290,5 @@ public class BaseClass
 	public void setAndroidDriver(AndroidDriver androidDriver) {
 		this.androidDriver = androidDriver;
 	}
+
 }

@@ -5,8 +5,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 
-public class WindowHandleSupport 
-{
+import browsersetup.BaseClass;
+
+public class WindowHandleSupport extends BaseClass
+{ 
 	public static String getCurrentWindowHandle(WebDriver driver)
 	{
 		return driver.getWindowHandle();
@@ -39,7 +41,7 @@ public class WindowHandleSupport
     	for(String eachWindowHandle : windowHandles)
     	{
     		driver.switchTo().window(eachWindowHandle);
-    		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+    		driver.manage().timeouts().pageLoadTimeout(Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "pageLoadTimeout_PO")), TimeUnit.SECONDS);
     		if( eachWindowHandle.equals(pageHandle)  )
     		{   			
     			reuiredWindowDriver = driver;
@@ -59,7 +61,7 @@ public class WindowHandleSupport
     	for(String eachWindowHandle : windowHandles)
     	{
     		driver.switchTo().window(eachWindowHandle);
-    		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+    		driver.manage().timeouts().pageLoadTimeout(Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "pageLoadTimeout_PO")), TimeUnit.SECONDS);
     		windowTitle = driver.getTitle();
     		if( windowTitle.equals(pageTitle) || windowTitle.startsWith(pageTitle) )
     		{   			

@@ -27,12 +27,14 @@ import utilities.ExcelUtilities;
 public class LenskartBuyScripts extends BaseClass
 {
 	@Test(retryAnalyzer = helpers.RetryMechanism.class, groups = { "Regression","Web Portal","Lenskart"})
-	@Parameters({ "environment", "clientName" })
-	public void buyFrame(String environment, String clientName) throws InterruptedException
+	@Parameters({ "environment", "automationType" })
+	public void buyFrame(String environment, String automationType) throws InterruptedException
 	{
+		
 		LenskartPage lenskartPage= new LenskartPage(getDriver());
-		String userName = ConfigurationData.getUserDetails(environment, clientName, "Automation Username 1");
-		String password = ConfigurationData.getUserDetails(environment, clientName, "Automation Password 1");
+		
+		String userName = ConfigurationData.getUserDetails(environment, automationType, "username");
+		String password = ConfigurationData.getUserDetails(environment, automationType, "password");
 		//System.out.println(userName);
 		try {
 			Thread.sleep(4000);

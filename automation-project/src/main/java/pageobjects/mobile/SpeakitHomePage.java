@@ -18,7 +18,7 @@ public class SpeakitHomePage extends BaseClass
 	{
 		setiOSDriver(driver);
 		//getAndroidDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		wait = new WebDriverWait(getiOSDriver(), 15);
+		wait = new WebDriverWait(getiOSDriver(), Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "webdriverwait")));
 		//PageFactory.initElements( driver, this);
 		PageFactory.initElements(new AjaxElementLocatorFactory(getiOSDriver(), 20), this);
 	}
