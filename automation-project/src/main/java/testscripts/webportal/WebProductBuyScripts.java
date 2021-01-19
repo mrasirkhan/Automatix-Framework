@@ -22,13 +22,13 @@ import utilities.ExcelUtilities;
 public class WebProductBuyScripts extends BaseClass
 {
 	@Test(retryAnalyzer = helpers.RetryMechanism.class, groups = { "Regression","Web Portal","Web Amazon Buy"})
-	@Parameters({ "environment", "clientName" })
-	public void buyProduct(String environment, String clientName) throws InterruptedException
-	{
+	@Parameters({ "environment", "automationType" })
+	public void buyProduct(String environment, String automationType) throws InterruptedException
+	{		
 		AmazonHomePage amazonHomePage = new AmazonHomePage(getDriver());
 		AmazonLoginEmailPage amazonLoginEmailPage = amazonHomePage.clickOnSignIn();
-		String userName = ConfigurationData.getUserDetails(environment, clientName, "Automation Username 1");
-		String password = ConfigurationData.getUserDetails(environment, clientName, "Automation Password 1");
+		String userName = ConfigurationData.getUserDetails(environment, automationType, "Automation Username 1");
+		String password = ConfigurationData.getUserDetails(environment, automationType, "Automation Password 1");
 		/*if(environment.equals("Amazon India"))
 			amazonHomePage = amazonLoginEmailPage.amazonIndiaLogin(userName, password);
 		else if(environment.equals("Amazon US"))
@@ -36,16 +36,16 @@ public class WebProductBuyScripts extends BaseClass
 		
 		amazonHomePage = amazonLoginEmailPage.amazonIndiaLogin(userName, password);
 		
-/*		String userName = ConfigurationData.getUserDetails(environment, clientName, "Automation Username 1");
+/*		String userName = ConfigurationData.getUserDetails(environment, automationType, "Automation Username 1");
 		amazonLoginPage = amazonLoginPage.enterEmailAddress(userName);
 		AmazonLoginPasswordPage amazonLoginPasswordPage = amazonLoginPage.clickOnContinueButton();
-		String password = ConfigurationData.getUserDetails(environment, clientName, "Automation Password 1");
+		String password = ConfigurationData.getUserDetails(environment, automationType, "Automation Password 1");
 		amazonLoginPasswordPage = amazonLoginPasswordPage.enterPassword(password);
 		amazonHomePage = amazonLoginPasswordPage.clickOnLoginButton();*/
-		amazonHomePage = amazonHomePage.selectCategoryFromList(ExcelUtilities.getKeyValueFromExcelWithPosition("TestCaseData.xlsx", "HomePage_"+environment.toUpperCase(), "TC2", 1));
+		amazonHomePage = amazonHomePage.selectCategoryFromList(ExcelUtilities.getKeyValueFromExcelWithPosition(utilities.ReadProperties.getProperty(filenamesPropertie, location, "Testcasesdata"), "HomePage_"+environment.toUpperCase(), "TC2", 1));
 		amazonHomePage = amazonHomePage.searchFor(ExcelUtilities.getKeyValueFromExcelWithPosition("TestCaseData.xlsx", "HomePage_"+environment.toUpperCase(), "TC2", 2));
 		AmazonSearchResultPage amazonSearchResultPage = amazonHomePage.searchItem();
-		String productDetails = ExcelUtilities.getKeyValueFromExcelWithPosition("TestCaseData.xlsx", "HomePage_"+environment.toUpperCase(), "TC2", 3);
+		String productDetails = ExcelUtilities.getKeyValueFromExcelWithPosition(utilities.ReadProperties.getProperty(filenamesPropertie, location, "Testcasesdata"), "HomePage_"+environment.toUpperCase(), "TC2", 3);
 		boolean productAvailable = amazonSearchResultPage.selectProduct(productDetails,environment);
 		if(productAvailable)
 		{	

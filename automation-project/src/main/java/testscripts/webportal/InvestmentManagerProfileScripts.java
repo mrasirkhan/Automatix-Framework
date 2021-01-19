@@ -13,13 +13,13 @@ import pageobjects.webportal.LoginPage;
 public class InvestmentManagerProfileScripts extends BaseClass
 {
 	@Test(retryAnalyzer = helpers.RetryMechanism.class, groups = { "Regression","Sanity","Firm A","Role Access"})
-	@Parameters({ "environment", "clientName" })
-	public void verifyInvestmentManagerProfile(String environment, String clientName) throws InterruptedException
+	@Parameters({ "environment", "automationType" })
+	public void verifyInvestmentManagerProfile(String environment, String automationType) throws InterruptedException
 	{
 		LoginPage loginpage = new LoginPage(getDriver());
-		String userName = ConfigurationData.getUserDetails(environment, clientName, "Automation Username 1");
+		String userName = ConfigurationData.getUserDetails(environment, automationType, "Automation Username 1");
 		loginpage.EnterLoginID(userName);
-		loginpage.EnterPassword(ConfigurationData.getUserDetails(environment, clientName, "Automation Password 1"));
+		loginpage.EnterPassword(ConfigurationData.getUserDetails(environment, automationType, "Automation Password 1"));
 		/*HomePage homepage = loginpage.ClickLoginButton();
 		//homepage = homepage.searchBySpecificText("Client Name", "All", "Jane");
 		homepage = homepage.searchBySpecificText(ExcelUtilities.getKeyValueFromExcelWithPosition("TestCaseData.xlsx", "HomePage_"+environment.toUpperCase(), "TC2", 1), 

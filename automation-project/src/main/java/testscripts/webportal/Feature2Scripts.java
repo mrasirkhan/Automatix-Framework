@@ -14,8 +14,8 @@ import reporting.ListenerClass;
 public class Feature2Scripts extends BaseClass
 {
 	@Test(retryAnalyzer = helpers.RetryMechanism.class, groups = { "Regression","Firm A","Module 1"})
-	@Parameters({ "environment", "clientName" })
-	public void automationScriptTwo(String environment, String clientName) throws InterruptedException
+	@Parameters({ "environment", "automationType" })
+	public void automationScriptTwo(String environment, String automationType) throws InterruptedException
 	{
 		GooglePage googlepage = new GooglePage(getDriver());
 		googlepage = googlepage.SettingLinkClick();

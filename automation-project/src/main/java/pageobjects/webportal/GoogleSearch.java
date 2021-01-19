@@ -10,7 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GoogleSearch 
+import browsersetup.BaseClass;
+
+public class GoogleSearch extends BaseClass
 {
 
 	WebDriver driver;
@@ -19,8 +21,8 @@ public class GoogleSearch
 	public GoogleSearch(WebDriver driver)
 	{
         this.driver = driver;
-        this.driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        wait = new WebDriverWait(this.driver, 15);
+        this.driver.manage().timeouts().pageLoadTimeout(Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "pageLoadTimeout_PO")), TimeUnit.SECONDS);
+        wait = new WebDriverWait(this.driver, Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "webdriverwait")));
 		//PageFactory.initElements( driver, this);
 		 PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20), this);
 	}

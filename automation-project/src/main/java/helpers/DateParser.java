@@ -11,13 +11,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class DateParser 
-{
+import browsersetup.BaseClass;
+
+public class DateParser extends BaseClass
+{	
 	public static String convertDBDateToFormat(String dBDate, String dateFormat) throws ParseException
 	{
 		// Convert input string into a date
 		//dbdateFormat = "yyyy-MM-dd hh:mm:ss.S"
-		DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S");
+		DateFormat inputFormat = new SimpleDateFormat(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat1"));
 		Date date = inputFormat.parse(dBDate);
 		// Format date into output format
 		//dateFormat="DD-MMMM-YYYY"
@@ -29,8 +31,8 @@ public class DateParser
 	
 	public static String convertSDFToDBDate(String sDFDate) throws ParseException
 	{
-		SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-		SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat input = new SimpleDateFormat(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat2"));
+		SimpleDateFormat output = new SimpleDateFormat(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat3"));
 		Date inputdate = input.parse(sDFDate);
 		String formattedTime = output.format(inputdate);
 /*		// Convert input string into a date
@@ -48,11 +50,11 @@ public class DateParser
 	
 	public static String getFirstCollectionDate(LocalDate date, int collectionDay, String schemaName, String environment) throws InterruptedException, SQLException, ParseException 
 	{
-		List<String> bufferDays = DatabaseHelper.CreateDataListForAListOfRows("Select value From FIRM_REFERENCE Where name = 'DDBufferDays';", "value", schemaName, environment);  
-		List<String> holidays = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM HOLIDAY_MASTER", "DATE", "commondb", environment);
+		List<String> bufferDays = DatabaseHelper.CreateDataListForAListOfRows(utilities.ReadProperties.getProperty(databasePropertie, location, "bufferDays"), "value", schemaName, environment);  
+		List<String> holidays = DatabaseHelper.CreateDataListForAListOfRows(utilities.ReadProperties.getProperty(databasePropertie, location, "holidays"), "DATE", "commondb", environment);
 		LocalDate result = date;
 		LocalDate finalResultDate = null;
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat5"));
 		int addedDays = 0;
 		while (addedDays < Integer.valueOf(bufferDays.get(0))) 
 		{
@@ -65,7 +67,7 @@ public class DateParser
 
 		String collectionDate = date.getYear()+"-"+date.getMonthValue()+"-"+String.valueOf(collectionDay);
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat6"));
 		formatter = formatter.withLocale( Locale.UK );  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
 		LocalDate collectionDateFormatted = LocalDate.parse(collectionDate, formatter);
 		
@@ -103,7 +105,7 @@ public class DateParser
 			}while(isWeekEnd);
 
 		}
-		dtf = DateTimeFormatter.ofPattern("dd MMM yyyy");
+		dtf = DateTimeFormatter.ofPattern(utilities.ReadProperties.getProperty(configPropertie, location, "dateFormat7"));;
 		return dtf.format(finalResultDate);
 	}
 

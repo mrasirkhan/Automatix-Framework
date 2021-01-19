@@ -20,14 +20,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class ExcelReportGenerator {
+import browsersetup.BaseClass;
+
+public class ExcelReportGenerator extends BaseClass {
 
 	public void generateExcelReport() throws ParserConfigurationException, SAXException, IOException
 	{
 		String path = ExcelReportGenerator.class.getClassLoader().getResource("./").getPath();
 		//path = path.replace("bin", "src");
 
-		File xmlFile = new File(path + "../surefire-reports/testng-results.xml");
+		File xmlFile = new File(path + utilities.ReadProperties.getProperty(filenamesPropertie, location, "resultxml"));
 		//XML Parsing
 		DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
 		DocumentBuilder build = fact.newDocumentBuilder();
@@ -239,7 +241,7 @@ public class ExcelReportGenerator {
 				}
 			}
 		}
-		FileOutputStream fout = new FileOutputStream(path + "../../Reports/Report.xlsx");
+		FileOutputStream fout = new FileOutputStream(path + utilities.ReadProperties.getProperty(filenamesPropertie, location, "Report"));
 		book.write(fout);
 		fout.close();
 		System.out.println("Report Generated");

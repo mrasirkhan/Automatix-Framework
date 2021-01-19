@@ -37,8 +37,8 @@ import utilities.JavaScriptExecutor;
 public class FrameStylerScripts extends BaseClass 
 {
 	@Test(retryAnalyzer = helpers.RetryMechanism.class, groups = { "Regression", "Web Portal", "Specsavers" })
-	@Parameters({ "environment", "clientName" })
-	public void addToFavorite(String environment, String clientName) throws InterruptedException {
+	@Parameters({ "environment", "automationType" })
+	public void addToFavorite(String environment, String automationType) throws InterruptedException {
 		// JavaScriptExecutor.clickElementUsingJavaScript(getDriver(),
 		// rejectOffer);
 		// JavaScriptExecutor.clickElementUsingJavaScript(getDriver(), );

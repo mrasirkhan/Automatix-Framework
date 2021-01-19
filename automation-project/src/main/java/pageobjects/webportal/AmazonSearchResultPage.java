@@ -27,9 +27,9 @@ public class AmazonSearchResultPage extends BaseClass
 		//PageFactory.initElements( driver, this);
 		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20), this);*/
 		setDriver(driver);
-		getDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		getDriver().manage().timeouts().pageLoadTimeout(Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "pageLoadTimeout_PO")), TimeUnit.SECONDS);
 		//JavaScriptExecutor.waitUntilPageLoad(getDriver());
-		wait = new WebDriverWait(getDriver(), 15);
+		wait = new WebDriverWait(getDriver(), Long.parseLong(utilities.ReadProperties.getProperty(configPropertie, location, "webdriverwait")));
 		//PageFactory.initElements( driver, this);
 		PageFactory.initElements(new AjaxElementLocatorFactory(getDriver(), 20), this);
 	}

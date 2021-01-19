@@ -5,12 +5,15 @@ import helpers.DatabaseHelper;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ChangeExecutionStatus 
-{
+import browsersetup.BaseClass;
+
+public class ChangeExecutionStatus extends BaseClass
+{	
 	public void changeExecutionStatusOfInprogressExecution() throws InterruptedException, SQLException
 	{
-		List<String> executionID = DatabaseHelper.CreateDataListForAListOfRows("SELECT * FROM execution_details Where Exec_Status = 'In Progress' Order By Date", "EXECUTION_ID", "vitaminshopeeautomationdb", "Local");
-		DatabaseHelper.updateQuery("Update execution_details Set Exec_Status = 'Completed' Where EXECUTION_ID = "+Integer.parseInt(executionID.get(0))+";", "vitaminshopeeautomationdb", "Local");
+		String dbname=utilities.ReadProperties.getProperty(databasePropertie, location, "databasename");
+		List<String> executionID = DatabaseHelper.CreateDataListForAListOfRows(utilities.ReadProperties.getProperty(databasePropertie, location, "sql_execution_details"), "EXECUTION_ID", dbname, "Local");
+		DatabaseHelper.updateQuery(utilities.ReadProperties.getProperty(databasePropertie, location, "sql_Exec_Status")+Integer.parseInt(executionID.get(0))+";", dbname, "Local");
 	}
 	
 	public static void main(String[] args) throws InterruptedException, SQLException
