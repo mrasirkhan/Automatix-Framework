@@ -14,7 +14,7 @@ public class UserDao
 {
 	static Session session = HibernateUtil.getSession();
 
-	public static List<Users> getUserWithEmailAddress(String currentEmailAddress, String currentPassword)	
+	public static List<Users> getUserWithEmailAddress(String currentEmailAddress)	
 	{
 		List<Users> results = new ArrayList<>();
 		try
